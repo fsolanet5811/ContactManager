@@ -31,7 +31,7 @@ namespace ContactManager.Models
 
         public string Address { get; set; }
 
-        public DateTime Birthday { get; set; }
+        public DateTime? Birthday { get; set; }
 
         public string Company { get; set; }
 
@@ -49,7 +49,7 @@ namespace ContactManager.Models
             FirstName = sqlRow["First_Name"].ToString();
             LastName = sqlRow["Last_Name"].ToString();
             Address = sqlRow["Address"].ToString();
-            Birthday = sqlRow["Birthday"] == DBNull.Value ? default(DateTime) : (DateTime)sqlRow["Birthday"];
+            Birthday = sqlRow["Birthday"] == DBNull.Value ? null : (DateTime?)sqlRow["Birthday"];
             Company = sqlRow["Company"].ToString();
             Notes = sqlRow["Notes"].ToString();
         }
@@ -99,6 +99,54 @@ namespace ContactManager.Models
 
             foreach (Email email in Emails)
                 email.Add(Id);
+        }
+
+        public void Update()
+        {
+            using (SqlCommand command = new SqlCommand("Update Contacts set " +
+                "First_Name = @First_Name, " +
+                "Last_Name = @Last_Name," +
+                "Address = @Address, " +
+                "Birthday = @Birthday, " +
+                "Company = @Company, " +
+                "Notes = @Notes " +
+                "where Id = @Id"))
+            {
+                command.Parameters.AddRange(new SqlParameter[]
+                {
+                    DataContext.CreateSqlParameter("@Id", Id),
+                    DataContext.CreateSqlParameter("@First_Name", FirstName),
+                    DataContext.CreateSqlParameter("@Last_Name", LastName),
+                    DataContext.CreateSqlParameter("@Birthday", Birthday),
+                    DataContext.CreateSqlParameter("@Address", Address),
+                    DataContext.CreateSqlParameter("@Company", Company),
+                    DataContext.CreateSqlParameter("@Notes", Notes)
+                });
+
+                DataContext.ExecuteNonQuery(command);
+            }
+
+            foreach (PhoneNumber number in PhoneNumbers)
+                number.Update();
+
+            foreach (Email email in Emails)
+                email.Update();
+        }
+
+        public void Delete()
+        {
+            Delete(Id);
+        }
+
+        public static void Delete(int contactId)
+        {
+            using (SqlCommand command = new SqlCommand("Delete from Phone_Numbers where Contact_id = @Id; " +
+                "Delete from Emails where Contact_id = @Id; " +
+                "Delete from contacts where Id = @Id"))
+            {
+                command.Parameters.Add(DataContext.CreateSqlParameter("@Id", contactId));
+                DataContext.ExecuteNonQuery(command);
+            }
         }
 
         public void LoadPhoneNumbers()

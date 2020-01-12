@@ -11,15 +11,16 @@ namespace ContactManager.Controllers
     public class ContactsController : ApiController
     {
         private static readonly List<Contact> contacts = new List<Contact>();
-        private static int nextId = 1;
 
         [HttpGet]
-        public IHttpActionResult GetContacts([FromBody] SearchCriteria criteria)
+        [Route("api/contacts/search/{userId}")]
+        public IHttpActionResult GetContacts(int userId, [FromBody] SearchCriteria criteria)
         {
             return Ok(contacts.Where(c => c.MathcesSearchCriteria(criteria)));
         }
 
         [HttpGet]
+        [Route("api/contacts/{userId}")]
         public IHttpActionResult GetContacts(int userId)
         {
             try
@@ -33,12 +34,13 @@ namespace ContactManager.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult AddContact([FromBody] AddContactRequest request)
+        [Route("api/contacts/add/{userId}")]
+        public IHttpActionResult AddContact(int userId, [FromBody] Contact contact)
         {
             try
             {
-                request.Contact.Add(request.UserId);
-                return Ok(request.Contact);
+                contact.Add(userId);
+                return Ok(contact);
             }
             catch(Exception ex)
             {
@@ -47,23 +49,29 @@ namespace ContactManager.Controllers
         }
 
         [HttpDelete]
+        [Route("api/contacts/delete/{id}")]
         public IHttpActionResult DeleteContact(int id)
         {
-            contacts.RemoveAll(con => con.Id == id);
+            Contact.Delete(id);
             return Ok();
         }
 
         [HttpPost]
+        [Route("api/contacts/update/{id}")]
         public IHttpActionResult UpdateContact(int id, [FromBody] Contact contact)
         {
-            Contact toUpdate = contacts.FirstOrDefault(con => con.Id == id);
-            if (toUpdate is null)
-                return NotFound();
-
-            contact.Id = id;
-            contacts.Remove(toUpdate);
-            contacts.Add(contact);
-            return Ok(contact);
+            try
+            {
+                // By changinf the id of the contact object we recieve to the one that was passed in,
+                // the contact with that id will be updated.
+                contact.Id = id;
+                contact.Update();
+                return Ok(contact);
+            }
+            catch(Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
     }

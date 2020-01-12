@@ -47,5 +47,23 @@ namespace ContactManager.Models
                 Id = (int)dt.Rows[0][0];
             }
         }
+
+        internal void Update()
+        {
+            using (SqlCommand command = new SqlCommand("Update Emails set " +
+                "Address = @Address, " +
+                "Type = @Type " +
+                "where Id = @Id"))
+            {
+                command.Parameters.AddRange(new SqlParameter[]
+                {
+                    DataContext.CreateSqlParameter("@Id", Id),
+                    DataContext.CreateSqlParameter("@Address", Address),
+                    DataContext.CreateSqlParameter("@Type", EmailType)
+                });
+
+                DataContext.ExecuteNonQuery(command);
+            }
+        }
     }
 }
