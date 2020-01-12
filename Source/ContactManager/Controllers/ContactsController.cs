@@ -16,7 +16,16 @@ namespace ContactManager.Controllers
         [Route("api/contacts/search/{userId}")]
         public IHttpActionResult GetContacts(int userId, [FromBody] SearchCriteria criteria)
         {
-            return Ok(contacts.Where(c => c.MathcesSearchCriteria(criteria)));
+            try
+            {
+                User user = new Models.User() { Id = userId };
+                user.LoadContacts();
+                return Ok(user.SearchContacts(criteria));
+            }
+            catch(Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
         [HttpGet]

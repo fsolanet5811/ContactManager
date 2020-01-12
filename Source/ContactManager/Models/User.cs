@@ -44,6 +44,11 @@ namespace ContactManager.Models
             return contacts;
         }
 
+        public List<Contact> SearchContacts(SearchCriteria criteria)
+        {
+            return Contacts.Where(con => con.MathcesSearchCriteria(criteria)).ToList();
+        }
+
         public void LoadContacts()
         {
             Contacts = LoadUserContacts(Id);

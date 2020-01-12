@@ -174,7 +174,7 @@ namespace ContactManager.Models
         public bool MathcesSearchCriteria(SearchCriteria criteria)
         {
             if (criteria.SearchType == SearchType.Name)
-                return FullName.Contains(criteria.SearchText);
+                return FullName.ToLower().Contains(criteria.SearchText.ToLower());
 
             if (criteria.SearchType == SearchType.PhoneNumber)
             {
