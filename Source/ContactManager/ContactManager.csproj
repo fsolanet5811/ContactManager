@@ -90,7 +90,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AddContactRequest.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\DataContext.cs" />
     <Compile Include="Models\Email.cs" />
