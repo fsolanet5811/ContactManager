@@ -2,10 +2,18 @@
 import { hot } from 'react-hot-loader';
 
 class Contact extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            contact: props.contact
+        };
+        this.state.contact.FullName = 'changed';
+    }
+
     render() {
         return (
             <div>
-                contact page yooooo
+                {this.state.contact.FullName}
             </div>
         );
     }

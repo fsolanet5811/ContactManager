@@ -2,20 +2,27 @@
 import { hot } from 'react-hot-loader';
 import './manager.css'
 import { searchContacts } from '../../../api.js'
+import { Redirect } from 'react-router-dom';
 
 class Manager extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            contacts: [],
+            contacts: props.contacts,
             searchCriteria: {
                 searchType: 'Name',
                 searchText: ''
-            }
+            },
+            showContactPage: false,
         };
     }
 
     render() {
+        if (this.state.showContactPage) {
+            this.state.showContactPage = false;
+            return <Redirect push to="/contact/"/>
+        }
+
         return (
             <div style={{
                 display: 'flex',
@@ -51,7 +58,7 @@ class Manager extends Component {
                                     </td>
                                     <td className="Row">
                                         <div style={{ float: 'right' }}>
-                                            <button onClick={this.editClick.bind(this)} className="Button">
+                                            <button onClick={this.editClick.bind(this, contact)} className="Button">
                                                 <img src="/React/images/pencil.png" alt="Edit" className="Image" />
                                             </button>
                                             <button className="Button">
@@ -78,8 +85,10 @@ class Manager extends Component {
         this.setState(this.state);
     }
 
-    editClick() {
-        this.props.showContactPage();
+    editClick(contact) {
+        this.props.grabContacts(contact, this.state.contacts);
+        this.state.showContactPage = true;
+        this.setState(this.state);
     }
 }
 

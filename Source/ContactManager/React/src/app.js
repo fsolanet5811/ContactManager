@@ -4,6 +4,7 @@ import { hot } from 'react-hot-loader';
 import './app.css';
 import Content from './components/content/content.js';
 import Header from './components/header/header.js';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const ViewMode = {
     Manager: 0,
@@ -20,10 +21,12 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
-                <Header />
-                <Content />
-            </div>
+            <Router>
+                <div className="App">
+                    <Header/>
+                    <Content/>
+                </div>
+            </Router>
         );
     }
 }
