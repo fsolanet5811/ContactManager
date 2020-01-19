@@ -12,6 +12,7 @@ namespace ContactManager
         {
             // Web API configuration and services
             DataContext.ConnectionString = Settings.ConnectionString;
+            config.EnableCors();
 
             // Web API routes
             config.MapHttpAttributeRoutes();

@@ -5,14 +5,16 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using ContactManager.Models;
+using System.Web.Http.Cors;
 
 namespace ContactManager.Controllers
 {
+    [EnableCors(origins: "http://poosdcontactmanager.azurewebsites.net", headers: "*", methods: "*")]
     public class ContactsController : ApiController
     {
         private static readonly List<Contact> contacts = new List<Contact>();
 
-        [HttpGet]
+        [HttpPost]
         [Route("api/contacts/search/{userId}")]
         public IHttpActionResult GetContacts(int userId, [FromBody] SearchCriteria criteria)
         {
@@ -82,6 +84,5 @@ namespace ContactManager.Controllers
                 return InternalServerError(ex);
             }
         }
-
     }
 }
