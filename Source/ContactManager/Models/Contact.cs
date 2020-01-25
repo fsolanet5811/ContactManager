@@ -68,7 +68,7 @@ namespace ContactManager.Models
                 "Birthday, " +
                 "Address, " +
                 "Company, " +
-                "Notes) " +
+                "Notes) " + 
                 "output INSERTED.Id values(" +
                 "@User_id, " +
                 "@First_Name, " +
@@ -171,7 +171,7 @@ namespace ContactManager.Models
             }
         }
 
-        public bool MathcesSearchCriteria(SearchCriteria criteria)
+        public bool MatchesSearchCriteria(SearchCriteria criteria)
         {
             if (criteria.SearchType == SearchType.Name)
                 return FullName.ToLower().Contains(criteria.SearchText.ToLower());

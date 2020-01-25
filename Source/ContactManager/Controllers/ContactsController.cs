@@ -85,4 +85,37 @@ namespace ContactManager.Controllers
             }
         }
     }
+    public class UsersController : ApiController
+    {
+        private static readonly List<Contact> users = new List<User>();
+        [HttpPost]
+        [Route("api/users/register/{userId}")]
+        public IHttpActionResult RegisterUser(string username, string password)
+        {
+           try
+            {
+                User user = new User(username, password);
+                user.RegisterUser(username, password);
+            }
+            catch(Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+        private static readonly List<Contact> users = new List<User>();
+        [HttpGet]
+        [Route("api/users/login/{userId}")]
+        public IHttpActionResult LoginUser(string username, string password)
+        {
+            try
+            {
+                Login login = new Login(username, password);
+                login.LoginUser();
+            }
+            catch(Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+    }
 }
