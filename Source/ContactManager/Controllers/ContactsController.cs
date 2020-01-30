@@ -89,7 +89,7 @@ namespace ContactManager.Controllers
     {
         private static readonly List<Contact> users = new List<User>();
         [HttpPost]
-        [Route("api/users/register/{userId}")]
+        [Route("api/users/register")]
         public IHttpActionResult RegisterUser(string username, string password)
         {
            try
@@ -104,13 +104,13 @@ namespace ContactManager.Controllers
         }
         private static readonly List<Contact> users = new List<User>();
         [HttpGet]
-        [Route("api/users/login/{userId}")]
+        [Route("api/users/login")]
         public IHttpActionResult LoginUser(string username, string password)
         {
             try
             {
-                Login login = new Login(username, password);
-                login.LoginUser();
+                User user = new User(username, password);
+                user.Login();
             }
             catch(Exception ex)
             {

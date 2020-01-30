@@ -69,45 +69,14 @@ namespace ContactManager.Models
             Contacts = LoadUserContacts(Id);
         }
 
-        private static int saltLengthLimit = 32;
-
-        private static byte[] GetSalt()
-        {
-            return GetSalt(saltLengthLimit);
-        }
-        private static byte[] GetSalt(int maximumSaltLength)
-        {
-            var salt = new byte[maximumSaltLength];
-            using (var random = new RNGCryptoServiceProvider())
-            {
-                random.GetNonZeroBytes(salt);
-            }
-
-            return salt;
-        }
-        public static byte[] GetHash(string password, string salt)
-        {
-            byte[] unhashedBytes = Encoding.Unicode.GetBytes(String.Concat(salt, password));
-
-            SHA256Managed sha256 = new SHA256Managed();
-            byte[] hashedBytes = sha256.ComputeHash(unhashedBytes);
-
-            return hashedBytes;
-        }
         public void RegisterUser(string username, string password)
         {
             using (SqlCommand command = new SqlCommand("Insert into Users (" +
                 "Username, " +
-                "Password" ))
+                "Password) " +
                 "output INSERTED.Id values(" +
                 "@Username, " +
-                "@Password) "))        
-
-                password = GetHash( password, GetSalt()).ToString();
-        
-
-
-
+                "@Password) "))      
             {
                 command.Parameters.AddRange(new SqlParameter[]
                 {
@@ -118,7 +87,22 @@ namespace ContactManager.Models
                 DataTable dt = DataContext.ExecuteReader(command);
                 Id = (int)dt.Rows[0][0];
             }
-
         }
+        /*public int Login(string username, string password)
+        {
+            DataTable dt;
+            using(SqlCommand command = new SqlCommand("SELECT * From Users where Username = @Username (" +
+                "and password = @Password"))
+            {
+                command.Parameters.Add(DataContext.CreateSqlParameter("@Username", username));
+                command.Parameters.Add(DataContext.CreateSqlParameter("@Password", password));
+                dt = DataContext.ExecuteReader(command);
+                {
+                    
+                    return InternalServerError(ex);
+                }
+            }
+            }
+        }*/
     }
 }
