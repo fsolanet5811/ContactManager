@@ -25,12 +25,6 @@ namespace ContactManager.Models
             Contacts = new List<Contact>();
         }
 
-        public User(string username, string password)
-        {
-            Username = username;
-            Password = password;
-        }
-
         internal User(DataRow sqlRow) : this()
         {
             Id = Convert.ToInt32(sqlRow["Id"]);
@@ -69,7 +63,7 @@ namespace ContactManager.Models
             Contacts = LoadUserContacts(Id);
         }
 
-        public void RegisterUser(string username, string password)
+        public void Add()
         {
             using (SqlCommand command = new SqlCommand("Insert into Users (" +
                 "Username, " +
@@ -80,29 +74,28 @@ namespace ContactManager.Models
             {
                 command.Parameters.AddRange(new SqlParameter[]
                 {
-                    DataContext.CreateSqlParameter("@Username", username),
-                    DataContext.CreateSqlParameter("@Password", password),
+                    DataContext.CreateSqlParameter("@Username", Username),
+                    DataContext.CreateSqlParameter("@Password", Password),
                 });
 
                 DataTable dt = DataContext.ExecuteReader(command);
                 Id = (int)dt.Rows[0][0];
             }
         }
-        /*public int Login(string username, string password)
+        public static User Login(string name, string pass)
         {
             DataTable dt;
-            using(SqlCommand command = new SqlCommand("SELECT * From Users where Username = @Username (" +
-                "and password = @Password"))
+            using (SqlCommand command = new SqlCommand("SELECT * From Users where Username = @Username " +
+                "and Password = @Password"))
             {
-                command.Parameters.Add(DataContext.CreateSqlParameter("@Username", username));
-                command.Parameters.Add(DataContext.CreateSqlParameter("@Password", password));
+                command.Parameters.Add(DataContext.CreateSqlParameter("@Username", name));
+                command.Parameters.Add(DataContext.CreateSqlParameter("@Password", pass));
                 dt = DataContext.ExecuteReader(command);
-                {
-                    
-                    return InternalServerError(ex);
-                }
             }
-            }
-        }*/
+
+            User user = new User(dt.Rows[0]);
+
+            return user;
+        }
     }
 }
