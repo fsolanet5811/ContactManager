@@ -27,6 +27,10 @@ namespace ContactManager.Controllers
         [Route("api/users/add")]
         public IHttpActionResult AddUser([FromBody] User user)
         {
+            if (!(user.UniqueUsername(user.Username)))
+            {
+                return Content(HttpStatusCode.BadRequest, "Username already exists");
+            }
             try
             {
                 user.Add();
@@ -42,6 +46,10 @@ namespace ContactManager.Controllers
         [Route("api/users/login/{username}/{password}")]
         public IHttpActionResult LoginUser(string username, string password)
         {
+            if (Models.User.Login(username, password) == null)
+            {
+                return Content(HttpStatusCode.BadRequest, "Invalid Login");
+            }
             try
             {
                 return Ok(Models.User.Login(username, password));

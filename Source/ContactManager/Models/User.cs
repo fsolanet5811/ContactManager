@@ -63,6 +63,24 @@ namespace ContactManager.Models
             Contacts = LoadUserContacts(Id);
         }
 
+        public bool UniqueUsername(string username)
+        {
+            int count;
+            using (SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM Users WHERE Username = @Username"))
+            {
+                command.Parameters.AddRange(new SqlParameter[]
+                {
+                    DataContext.CreateSqlParameter("@Username", username),
+                });
+                DataTable dt = DataContext.ExecuteReader(command);
+                count = (int) dt.Rows[0][0];
+            }
+            if (count > 0)
+                return false;
+            else
+                return true;
+        }
+
         public void Add()
         {
             using (SqlCommand command = new SqlCommand("Insert into Users (" +
@@ -70,7 +88,7 @@ namespace ContactManager.Models
                 "Password) " +
                 "output INSERTED.Id values(" +
                 "@Username, " +
-                "@Password) "))      
+                "@Password)"))
             {
                 command.Parameters.AddRange(new SqlParameter[]
                 {
@@ -82,16 +100,19 @@ namespace ContactManager.Models
                 Id = (int)dt.Rows[0][0];
             }
         }
+
         public static User Login(string name, string pass)
         {
             DataTable dt;
-            using (SqlCommand command = new SqlCommand("SELECT * From Users where Username = @Username " +
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE Username = @Username " +
                 "and Password = @Password"))
             {
                 command.Parameters.Add(DataContext.CreateSqlParameter("@Username", name));
                 command.Parameters.Add(DataContext.CreateSqlParameter("@Password", pass));
                 dt = DataContext.ExecuteReader(command);
             }
+            if (dt.Rows.Count == 0)
+                return null;
 
             User user = new User(dt.Rows[0]);
 
