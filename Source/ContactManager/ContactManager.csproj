@@ -105,6 +105,8 @@
     <Content Include="React\src\components\header\header.js" />
     <Content Include="React\src\components\loginpage\Login.css" />
     <Content Include="React\src\components\loginpage\Login.js" />
+    <Content Include="React\src\components\sidebar\Sidebar.css" />
+    <Content Include="React\src\components\sidebar\Sidebar.js" />
     <Content Include="React\src\index.js" />
     <Content Include="webpack.config.js" />
     <Content Include="Web.config" />
