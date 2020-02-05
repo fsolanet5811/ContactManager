@@ -9,7 +9,7 @@ using System.Web.Http.Cors;
 
 namespace ContactManager.Controllers
 {
-    [EnableCors(origins: "http://poosdcontactmanager.azurewebsites.net", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ContactsController : ApiController
     {
         private static readonly List<Contact> contacts = new List<Contact>();
@@ -31,12 +31,12 @@ namespace ContactManager.Controllers
         }
 
         [HttpGet]
-        [Route("api/contacts/{userId}")]
-        public IHttpActionResult GetContacts(int userId)
+        [Route("api/contacts/{contactId}")]
+        public IHttpActionResult GetContact(int contactId)
         {
             try
             {
-                return Ok(Models.User.LoadUserContacts(userId));
+                return Ok(Contact.Load(contactId));
             }
             catch(Exception ex)
             {

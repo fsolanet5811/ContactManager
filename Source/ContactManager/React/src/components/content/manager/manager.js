@@ -3,18 +3,29 @@ import { hot } from 'react-hot-loader';
 import './manager.css'
 import { searchContacts } from '../../../api.js'
 import { Redirect } from 'react-router-dom';
+import Contact from '../contact/contact.js';
 
 class Manager extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            contacts: props.contacts,
+            contacts: [],
             searchCriteria: {
                 searchType: 'Name',
-                searchText: ''
+                searchText: props.search
             },
             showContactPage: false,
+            searched: props.searched
         };
+
+        if(props.searched) {
+            searchContacts(1, this.state.searchCriteria).then(
+                (contacts) => {
+                    this.state.contacts = contacts;
+                    this.setState(this.state);
+                }
+            );
+        }
     }
 
     render() {
@@ -52,19 +63,7 @@ class Manager extends Component {
                             this.state.contacts.map((contact) =>
                                 <tr className="Row" key={contact.Id}>
                                     <td className="Row">
-                                        <div className="ContactName">
-                                            {contact.FullName}
-                                        </div>
-                                    </td>
-                                    <td className="Row">
-                                        <div style={{ float: 'right' }}>
-                                            <button onClick={this.editClick.bind(this, contact)} className="Button">
-                                                <img src="/React/images/pencil.png" alt="Edit" className="Image" />
-                                            </button>
-                                            <button className="Button">
-                                                <img src="/React/images/redx.png" alt="Delete" className="Image" />
-                                            </button>
-                                        </div>
+                                        <Contact contact={contact}/>
                                     </td>
                                 </tr>
                             )
@@ -82,11 +81,12 @@ class Manager extends Component {
 
     async searchClick() {
         this.state.contacts = await searchContacts(1, this.state.searchCriteria)
+        this.state.searched = true;
         this.setState(this.state);
     }
 
     editClick(contact) {
-        this.props.grabContacts(contact, this.state.contacts);
+        this.props.grabSearch(this.state.searchCriteria.searchText, this.state.searched);
         this.state.showContactPage = true;
         this.setState(this.state);
     }
