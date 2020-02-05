@@ -96,6 +96,13 @@
     <Content Include="React\src\api.js" />
     <Content Include="React\src\app.css" />
     <Content Include="React\src\app.js" />
+    <Content Include="React\src\components\contact-page\ContactPageApp.css" />
+    <Content Include="React\src\components\contact-page\ContactPageApp.js" />
+    <Content Include="React\src\components\contact-page\ContactPageLink.js" />
+    <Content Include="React\src\components\contact-page\ContactPageTitle.js" />
+    <Content Include="React\src\components\contact-page\MyButton.js" />
+    <Content Include="React\src\components\contact-page\MySearchBar.js" />
+    <Content Include="React\src\components\contact-page\MyTable.js" />
     <Content Include="React\src\components\content\content.css" />
     <Content Include="React\src\components\content\content.js" />
     <Content Include="React\src\components\header\header.css" />
