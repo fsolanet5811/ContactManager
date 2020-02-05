@@ -9,6 +9,15 @@ import "./ContactPageApp.css"
 
 class ContactPageApp extends React.Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {userId, contacts, searchString}
+    }
+
+    getContacts(contacts) {
+        this.state.contacts = contacts
+    }
+
     render() {
         return (
             <span>
@@ -22,7 +31,7 @@ class ContactPageApp extends React.Component {
                     <hr></hr>
                 </div>
                 <div className="Column Right">
-                    <span className="Search"></span><span><MySearchBar /></span><h1 className="RoundButton"><MyButton /></h1>
+                    <span className="Search"></span><span><MySearchBar returnContacts={this.getContacts.bind(this)} Id={this.state.userID}/></span><h1 className="RoundButton"><MyButton /></h1>
                     <div className="Table"><MyTable /></div>
                 </div>
             </span>
