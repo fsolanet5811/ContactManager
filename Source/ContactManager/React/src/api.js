@@ -38,3 +38,20 @@ export function updateContact(contactId, newContact) {
 export function deleteContact(contactId) {
 
 }
+
+export function login() {
+    return await fetch(baseAddress + 'api/users/login/' + username + "/" + password, {
+        body: JSON.stringify(searchCriteria),
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => {
+            return response.json()
+                .then(parsed => {
+                    console.log(parsed);
+                    return parsed;
+                });
+        });
+}

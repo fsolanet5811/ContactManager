@@ -1,0 +1,68 @@
+body {
+    background-color: lavender;
+}
+
+.Column {
+    float: left;
+}
+
+.Left {
+    width: 12%
+}
+
+.Right {
+    width: 88%
+}
+
+.Title {
+    margin: 0px 0px 0px 0px;
+    display: contents;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 60px;
+}
+
+.Navbar {
+    display: inline-block;
+}
+
+.Link {
+    display: block;
+    padding: 20px 10px 20px 40px;
+    width: 20%;
+    font-size: 40px;
+}
+
+.SearchBar {
+    float: left;
+    font-size: 30px;
+    margin-left: 0px;
+    padding-right: 470px;
+    width: auto;
+}
+
+
+.Search {
+    float: left;
+    font-size: 40px;
+    margin: 15px 0px 0px 100px;
+    padding: 0px 0px 0px 0px;
+    width: auto;
+}
+
+.ContactBlock {
+    display: table;
+    background-color: white;
+    height: 100%;
+}
+
+.Table {
+    margin-top: 50px;
+    width: auto;
+    background-color: aqua;
+}
+
+.RoundButton {
+    padding-left: 950px;
+    width: auto;
+}
