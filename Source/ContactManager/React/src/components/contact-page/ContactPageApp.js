@@ -32,7 +32,7 @@ class ContactPageApp extends React.Component {
                 </div>
                 <div className="Column Right">
                     <span className="Search"></span><span><MySearchBar returnContacts={this.getContacts.bind(this)} Id={this.state.userID}/></span><h1 className="RoundButton"><MyButton /></h1>
-                    <div className="Table"><MyTable /></div>
+                    <div className="Table"><MyTable contacts={this.state.contacts}/></div>
                 </div>
             </span>
         )
