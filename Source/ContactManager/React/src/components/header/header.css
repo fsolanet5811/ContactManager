@@ -1,7 +1,28 @@
 ﻿.Text {
-    background-color: #333;
-    overflow: hidden;
     color: white;
     font-size: 32px;
     padding: 20px 15px;
+    float: left;
+    display: inline-block;
+}
+
+.Link {
+    margin: 20px 20px 0px 20px;
+    color: white;
+    text-decoration: none;
+    vertical-align: middle;
+    display: inline-block;
+    float: left;
+    font-size: 20px;
+}
+
+.Header {
+    background-color: #333;
+    overflow: hidden;
+    vertical-align: middle;
+    height: 15%;
+}
+
+.H {
+    display:inline-block;
 }

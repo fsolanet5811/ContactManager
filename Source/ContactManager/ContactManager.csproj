@@ -96,6 +96,10 @@
     <Content Include="React\src\api.js" />
     <Content Include="React\src\app.css" />
     <Content Include="React\src\app.js" />
+    <Content Include="React\src\components\content\about\about.js" />
+    <Content Include="React\src\components\content\contact\contact.css" />
+    <Content Include="React\src\components\content\contact\contactInfo\contactInfo.css" />
+    <Content Include="React\src\components\content\contact\contactInfo\contactInfo.js" />
     <Content Include="React\src\components\content\content.css" />
     <Content Include="React\src\components\content\content.js" />
     <Content Include="React\src\components\header\header.css" />

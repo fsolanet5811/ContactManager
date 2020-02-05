@@ -1,7 +1,7 @@
 ﻿var baseAddress = 'http://localhost:51055';
 
-export async function getContacts(userId) {
-    return await fetch(baseAddress + '/api/contacts/' + userId)
+export async function getContact(contactId) {
+    return await fetch(baseAddress + '/api/contacts/' + contactId)
         .then(response => {
             return response.json()
                 .then(parsed => {
@@ -35,6 +35,8 @@ export function updateContact(contactId, newContact) {
 
 }
 
-export function deleteContact(contactId) {
-
+export async function deleteContact(contactId) {
+    await fetch(baseAddress + '/api/contacts/delete/' + contactId, {
+        method: 'DELETE'
+    });
 }
