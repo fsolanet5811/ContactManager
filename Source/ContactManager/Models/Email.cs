@@ -16,6 +16,14 @@ namespace ContactManager.Models
 
         public EmailType EmailType { get; set; }
 
+        public bool IsNew
+        {
+            get
+            {
+                return Id == 0;
+            }
+        }
+
         public Email() { }
 
         internal Email(DataRow sqlRow) : this()

@@ -4,30 +4,32 @@ import { hot } from 'react-hot-loader';
 import './content.css';
 import Manager from './manager/manager.js';
 import Contact from './contact/contact.js';
+import About from './about/about.js';
 import { Route, Link } from 'react-router-dom';
 
 class Content extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            grabbedEditContact: null,
-            grabbedContactList: []
+            grabbedSearch: '',
+            searched: false
         }
     }
 
     render() {
         return (
             <div>
-                <Route path="/" exact render={(props) => <Manager contacts={this.state.grabbedContactList} grabContacts={this.grabContacts.bind(this)} />}/>
-                <Route path="/contact/" render={(props) => <Contact contact={this.state.grabbedEditContact} />} />
+                <Route path="/" exact render={(props) => <Manager search={this.state.grabbedSearch} searched={this.state.searched} grabSearch={this.grabSearch.bind(this)} />}/>
+                <Route path="/contact/" render={(props) => <div style={{padding: '50px'}}><Contact contact={this.state.grabbedEditContact} /></div>} />
+                <Route path="/about/" component={About} />
             </div>
         );
     }
 
-    grabContacts(editContact, contactList) {
-        this.state.grabbedEditContact = editContact;
-        this.state.grabbedContactList = contactList;
-    }
+    grabSearch(search, searched) {
+        this.state.grabbedSearch = search;
+        this.state.searched = searched;
+    } 
 }
 
 export default hot(module)(Content);

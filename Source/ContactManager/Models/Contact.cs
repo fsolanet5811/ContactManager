@@ -54,6 +54,23 @@ namespace ContactManager.Models
             Notes = sqlRow["Notes"].ToString();
         }
 
+        public static Contact Load(int contactId)
+        {
+            using (SqlCommand command = new SqlCommand("select * from Contacts where Id = @Id"))
+            {
+                command.Parameters.Add(DataContext.CreateSqlParameter("@Id", contactId));
+                DataTable dt = DataContext.ExecuteReader(command);
+
+                if (dt.Rows.Count == 0)
+                    throw new Exception($"Contact with Id {contactId} does not exist.");
+
+                Contact contact = new Contact(dt.Rows[0]);
+                contact.LoadEmails();
+                contact.LoadPhoneNumbers();
+                return contact;
+            }
+        }
+
         /// <summary>
         /// Adds this contact as a new contact into the database.
         /// Populates its Id property with the one that the database gave it.
@@ -68,7 +85,7 @@ namespace ContactManager.Models
                 "Birthday, " +
                 "Address, " +
                 "Company, " +
-                "Notes) " +
+                "Notes) " + 
                 "output INSERTED.Id values(" +
                 "@User_id, " +
                 "@First_Name, " +
@@ -126,11 +143,31 @@ namespace ContactManager.Models
                 DataContext.ExecuteNonQuery(command);
             }
 
+            DeleteOldPhoneNumbers();
             foreach (PhoneNumber number in PhoneNumbers)
-                number.Update();
+            {
+                if(number.IsNew)
+                {
+                    number.Add(Id);
+                }
+                else
+                {
+                    number.Update();
+                }   
+            }
 
+            DeleteOldEmails();
             foreach (Email email in Emails)
-                email.Update();
+            {
+                if(email.IsNew)
+                {
+                    email.Add(Id);
+                }
+                else
+                {
+                    email.Update();
+                }
+            }
         }
 
         public void Delete()
@@ -171,7 +208,7 @@ namespace ContactManager.Models
             }
         }
 
-        public bool MathcesSearchCriteria(SearchCriteria criteria)
+        public bool MatchesSearchCriteria(SearchCriteria criteria)
         {
             if (criteria.SearchType == SearchType.Name)
                 return FullName.ToLower().Contains(criteria.SearchText.ToLower());
@@ -186,6 +223,24 @@ namespace ContactManager.Models
             }
 
             throw new NotImplementedException($"Cannot determine if contact matches search criteria on unimplemented search type {criteria.SearchType}.");
+        }
+
+        private void DeleteOldPhoneNumbers()
+        {
+            using (SqlCommand command = new SqlCommand("delete from Phone_Numbers where Id not in (@IdList)"))
+            {
+                command.Parameters.Add(DataContext.CreateSqlParameter("@IdList", string.Join(",", PhoneNumbers.Select(pn => pn.Id))));
+                DataContext.ExecuteNonQuery(command);
+            }
+        }
+
+        private void DeleteOldEmails()
+        {
+            using (SqlCommand command = new SqlCommand("delete from Emails where Id not in (@IdList)"))
+            {
+                command.Parameters.Add(DataContext.CreateSqlParameter("@IdList", string.Join(",", Emails.Select(em => em.Id))));
+                DataContext.ExecuteNonQuery(command);
+            }
         }
     }
 }
