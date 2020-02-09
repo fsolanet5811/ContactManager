@@ -3,22 +3,24 @@ import React from "react"
 class MySearchBar extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { inputValue: '' }
+        this.state = {
+            inputValue: ''
+        }
 
     }
 
     updateInputValue(e) {
 
-        this.setState({ inputValue: e.target.value })
+        this.state.inputValue = e.target.value
 
     }
 
     ifEnter(e) {
-        if (e.key === 'Enter')
-            alert(this.state.inputValue)
+        if (e.key === 'Enter') {
+            this.props.getContacts(this.state.inputValue)
+            this.setState(this.state = { inputValue: ''})
+        }
     }
-
-
 
     render() {
 

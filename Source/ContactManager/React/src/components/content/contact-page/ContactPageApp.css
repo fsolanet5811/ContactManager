@@ -58,11 +58,16 @@ body {
 
 .Table {
     margin-top: 50px;
-    width: auto;
+    width: 80%;
     background-color: aqua;
 }
 
 .RoundButton {
     padding-left: 950px;
     width: auto;
+}
+
+.ListItem {
+    margin-top: 25px;
+    width: 70%;
 }
