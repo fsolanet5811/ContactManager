@@ -1,22 +1,30 @@
 ﻿import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
-
 import './app.css';
-import Content from './components/content/content.js';
-import Header from './components/header/header.js';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Home from './components/home/home.js';
+import SignIn from './components/signin/signin.js';
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            context: {
+                loggedInUser: null,
+                editContactId: 0,
+                searchText: '',
+                searchPerformed: false
+            }
+        }
+    }
+
     render() {
         return (
             <Router>
-                <span className="App">
-                    <Header />
-                    <Content />
-                </span>
+                <Route exact path="/" render={() => <SignIn context={this.state.context}/>}/>
+                <Route path="/home" render={() => <Home context={this.state.context}/>}/>
             </Router>
         );
     }
 }
 
-export default hot(module)(App);
+export default App;
