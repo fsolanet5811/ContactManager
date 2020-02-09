@@ -18,6 +18,14 @@ namespace ContactManager.Models
 
         public PhoneNumberType PhoneNumberType { get; set; }
 
+        public bool IsNew
+        {
+            get
+            {
+                return Id == 0;
+            }
+        }
+
         public PhoneNumber() { }
 
         internal PhoneNumber(DataRow sqlRow) : this()
