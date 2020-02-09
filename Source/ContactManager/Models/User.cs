@@ -83,6 +83,8 @@ namespace ContactManager.Models
 
         public void Add()
         {
+            if (UniqueUsername(Username) == false)
+                throw new Exception($"Username already exists");
             using (SqlCommand command = new SqlCommand("Insert into Users (" +
                 "Username, " +
                 "Password) " +
@@ -112,7 +114,7 @@ namespace ContactManager.Models
                 dt = DataContext.ExecuteReader(command);
             }
             if (dt.Rows.Count == 0)
-                return null;
+                throw new Exception($"Invalid login.");
 
             User user = new User(dt.Rows[0]);
 
