@@ -83,6 +83,8 @@ namespace ContactManager.Models
 
         public void Add()
         {
+            if (UniqueUsername(Username) == false)
+                throw new Exception($"Username already exists");
             using (SqlCommand command = new SqlCommand("Insert into Users (" +
                 "Username, " +
                 "Password) " +
@@ -101,18 +103,18 @@ namespace ContactManager.Models
             }
         }
 
-        public static User Login(string name, string pass)
+        public User Login()
         {
             DataTable dt;
             using (SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE Username = @Username " +
                 "and Password = @Password"))
             {
-                command.Parameters.Add(DataContext.CreateSqlParameter("@Username", name));
-                command.Parameters.Add(DataContext.CreateSqlParameter("@Password", pass));
+                command.Parameters.Add(DataContext.CreateSqlParameter("@Username", Username));
+                command.Parameters.Add(DataContext.CreateSqlParameter("@Password", Password));
                 dt = DataContext.ExecuteReader(command);
             }
             if (dt.Rows.Count == 0)
-                return null;
+                throw new Exception($"Invalid login.");
 
             User user = new User(dt.Rows[0]);
 
