@@ -12,7 +12,7 @@ class ContactList extends React.Component {
 
         const contacts = props.contacts
         const List = contacts.map((contact) =>
-            <li key={contact.Id} className="ListItem"><Contact contact={contact} /></li>)
+            <li key={contact.Id} className="ListItem"><Contact contact={contact} deleteFromArray={this.props.deleteFromArray} /></li>)
 
         return (
             <ul>{List}</ul>
