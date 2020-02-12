@@ -27,7 +27,7 @@ export async function getContacts(userId, searchCriteria) {
         });
 }
 
-export function addContact(userId, contact) {
+export async function addContact(userId, contact) {
     return await fetch(baseAddress + 'api/contacts/add' + userId, {
         body: JSON.stringify(searchCriteria),
         method: 'POST',
@@ -44,7 +44,7 @@ export function addContact(userId, contact) {
         });
 }
 
-export function updateContact(contactId, newContact) {
+export async function updateContact(contactId, newContact) {
     return await fetch(baseAddress + 'api/contacts/update' + contactId, {
         body: JSON.stringify(searchCriteria),
         method: 'POST',
@@ -61,7 +61,7 @@ export function updateContact(contactId, newContact) {
         });
 }
 
-export function deleteContact(contactId) {
+export async function deleteContact(contactId) {
     return await fetch(baseAddress + 'api/contacts/delete/' + contactId, {
         body: JSON.stringify(searchCriteria),
         method: 'DELETE',
@@ -78,7 +78,7 @@ export function deleteContact(contactId) {
         });
 }
 
-export function addUser(user) {
+export async function addUser(user) {
     return await fetch(baseAddress + 'api/users/add', {
         body: JSON.stringify(searchCriteria),
         method: 'POST',
@@ -95,7 +95,7 @@ export function addUser(user) {
         });
 }
 
-export function login() {
+export async function login() {
     return await fetch(baseAddress + 'api/users/login/', {
         body: JSON.stringify(searchCriteria),
         method: 'POST',
