@@ -1,0 +1,64 @@
+﻿.Image {
+    width: 25px;
+    height: 25px;
+    border-width: 0px;
+    vertical-align: middle;
+}
+
+.Button {
+    background-color: transparent;
+    border-width: 0px;
+}
+
+.TextBox {
+    height: 25px;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.Table {
+    width: 700px;
+    border: 2px solid gray;
+    background-color: white;
+    min-height: 200px;
+    border-radius: 5px 5px;
+    margin: 30px 0px 30px 0px;
+}
+
+.ContactsHeaderCell {
+    background-color: lightgray;
+    border: 0;
+    margin: 0px;
+    width: 50%;
+}
+
+.SearchHeaderCell {
+    background-color: lightgray;
+    border: 0;
+    margin: 0px;
+    width: 50%;
+}
+
+.HeaderRow {
+    height: 40px;
+}
+
+.Row {
+    margin: 10px;
+    height: 40px;
+}
+
+.ContactsLabel {
+    font-size: 20px; 
+    font-family: Arial, Helvetica, sans-serif;
+    float: left;
+    margin-left: 10px;
+}
+
+.ToolsContent {
+    float: right;
+}
+
+.ContactName {
+    margin-left: 10px;
+}
