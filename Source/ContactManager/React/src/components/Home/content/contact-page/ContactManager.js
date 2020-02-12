@@ -20,10 +20,8 @@ class ContactManager extends React.Component {
         }
     }
 
-    async getContacts(inputValue) {
-        this.state.searchCriteria.searchText = inputValue
-        this.state.contacts = await searchContacts(this.state.userId, this.state.searchCriteria)
-        this.setState(this.state)
+    getContacts(contacts) {
+        this.state.contacts = contacts
     }
 
     deleteFromArray(id) {

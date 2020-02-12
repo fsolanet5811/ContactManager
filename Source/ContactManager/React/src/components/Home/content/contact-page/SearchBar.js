@@ -1,10 +1,15 @@
 ﻿import React from "react"
+import searchContacts from "../../../api.js"
 
 class SearchBar extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            inputValue: ''
+            inputValue: '',
+            searchCriteria: {
+                searchType: 'Name',
+                searchText: ''
+            }
         }
 
     }
@@ -15,13 +20,14 @@ class SearchBar extends React.Component {
 
     }
 
-    ifEnter(e) {
-        if (e.key === 'Enter') {
-            if (this.state.inputValue != '') {
-                this.props.getContacts(this.state.inputValue)
-                this.setState(this.state = { inputValue: '' })
+    async ifEnter(e) {
+            if (e.key === 'Enter') {
+                if (this.state.inputValue != '') {
+                    this.state.searchCriteria.searchText = this.state.inputValue
+                    let contacts = await searchContacts(this.props.userId, this.state.searchCriteria)
+                    this.props.getContact(contacts);
+                }
             }
-        }
     }
 
     render() {
