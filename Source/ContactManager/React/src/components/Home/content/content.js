@@ -8,7 +8,6 @@ import About from './about/about.js';
 import { Route, Link } from 'react-router-dom';
 import ContactManager from './contact-page/ContactManager.js';
 
-
 class Content extends Component {
     constructor(props) {
         super(props);
@@ -20,7 +19,6 @@ class Content extends Component {
     render() {
         return (
             <div>
-
                 <Route to="/home" render={() => <ContactManager context={this.state.context}/>}/>
             </div>
         );

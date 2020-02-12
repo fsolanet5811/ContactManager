@@ -11,26 +11,11 @@ namespace ContactManager.Controllers
 {
     public class UsersController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
 
         [HttpPost]
         [Route("api/users/add")]
         public IHttpActionResult AddUser([FromBody] User user)
         {
-            if (!(user.UniqueUsername(user.Username)))
-            {
-                return Content(HttpStatusCode.BadRequest, "Username already exists");
-            }
             try
             {
                 user.Add();
@@ -46,10 +31,6 @@ namespace ContactManager.Controllers
         [Route("api/users/login")]
         public IHttpActionResult LoginUser([FromBody] User user)
         {
-            if (user.Login() == null)
-            {
-                return Content(HttpStatusCode.BadRequest, "Invalid Login");
-            }
             try
             {
                 return Ok(user.Login());
@@ -58,11 +39,6 @@ namespace ContactManager.Controllers
             {
                 return InternalServerError(ex);
             }
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
         }
     }
 }

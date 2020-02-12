@@ -29,6 +29,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "history": "^4.10.1",
+    "react-bootstrap": "^1.0.0-beta.16",
     "react-hot-loader": "^4.12.18",
     "react-router-dom": "^5.1.2"
   }

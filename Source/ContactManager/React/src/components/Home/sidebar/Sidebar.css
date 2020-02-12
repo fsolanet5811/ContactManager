@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+body {
+    background-color: lightslategray;
+    margin: 0;
+    padding: 0;
+    font-family: Courier New;
+}
+
+
+.Sidebar {
+  position : fixed;
+  width : 250px;
+  padding-top: 5%;
+  background-color : #233142;
+  height : 100%;
+  text-align: center;
+  color : white;
+  left: 0;
+  bottom: 0;
+}
+
+
+.Sidebar ul li {
+    width: 150px;
+    color : white;
+    list-style : none;
+    padding : 15px 10px;
+    text-align: left;
+  }
+
+  .fixed {
+    position: fixed;
+    width: 0%;
+    bottom: -5px;
+    z-index:-5;
+  } 
+
+  .button {
+    color: white;
+    cursor: pointer;
+  }
+
+  .button:hover {
+    background-color: lightslategray;
+    color: white;
+  }
+
+  .button:focus {
+    background-color: blue;
+    color: white;
+  }

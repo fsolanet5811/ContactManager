@@ -1,4 +1,4 @@
-﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -96,25 +96,24 @@
     <Content Include="React\src\api.js" />
     <Content Include="React\src\app.css" />
     <Content Include="React\src\app.js" />
-    <Content Include="React\src\components\home\content\contact-page\ContactPageApp.css" />
-    <Content Include="React\src\components\home\content\contact-page\ContactPageApp.js" />
-    <Content Include="React\src\components\home\content\contact-page\ContactPageLink.js" />
-    <Content Include="React\src\components\home\content\contact-page\ContactPageTitle.js" />
-    <Content Include="React\src\components\home\content\contact-page\MyButton.js" />
-    <Content Include="React\src\components\home\content\contact-page\MySearchBar.js" />
-    <Content Include="React\src\components\home\content\contact-page\MyTable.js" />
+    <Content Include="React\src\components\home\content\contact-page\ContactList.js" />
+    <Content Include="React\src\components\home\content\contact-page\ContactManager.css" />
+    <Content Include="React\src\components\home\content\contact-page\ContactManager.js" />
+    <Content Include="React\src\components\home\content\contact-page\SearchBar.js" />
     <Content Include="React\src\components\home\content\contact\contact.css" />
+    <Content Include="React\src\components\home\content\contact\contact.js" />
     <Content Include="React\src\components\home\content\contact\contactInfo\contactInfo.css" />
     <Content Include="React\src\components\home\content\contact\contactInfo\contactInfo.js" />
     <Content Include="React\src\components\home\content\content.css" />
     <Content Include="React\src\components\home\content\content.js" />
-    <Content Include="React\src\components\home\content\contact\contact.js" />
+    <Content Include="React\src\components\home\content\edit\edit.css" />
+    <Content Include="React\src\components\home\content\edit\edit.js" />
     <Content Include="React\src\components\home\content\manager\manager.css" />
     <Content Include="React\src\components\home\content\manager\manager.js" />
-    <Content Include="React\src\components\signin\Login.css" />
-    <Content Include="React\src\components\signin\Login.js" />
     <Content Include="React\src\components\home\sidebar\Sidebar.css" />
     <Content Include="React\src\components\home\sidebar\Sidebar.js" />
+    <Content Include="React\src\components\signin\signin.css" />
+    <Content Include="React\src\components\signin\signin.js" />
     <Content Include="React\src\index.js" />
     <Content Include="webpack.config.js" />
     <Content Include="Web.config" />

@@ -1,0 +1,21 @@
+﻿.Column {
+    float: left;
+}
+
+.Right {
+    width: 88%
+}
+
+.Table {
+    margin-top: 50px;
+    width: 80%;
+    background-color: none;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.ListItem {
+    margin-top: 25px;
+    width: 70%;
+    list-style-type: none;
+}
