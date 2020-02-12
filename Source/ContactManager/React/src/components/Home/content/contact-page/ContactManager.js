@@ -47,7 +47,7 @@ class ContactManager extends React.Component {
         this.setState(this.state)
     }
 
-    checkForEdit() {
+    /*checkForEdit() {
         if (this.props.context.editContactId != 0) {
 
             i = 0
@@ -63,13 +63,12 @@ class ContactManager extends React.Component {
             }}
             />
         }
-    }
+    }*/
 
     render() {
         return (
             <span>
                 <div className="Column Right">
-                    {this.checkForEdit}
                     <span><SearchBar userId={this.state.userId} getContacts={this.getContacts} /></span>
                     <div className="Table"><ContactList contacts={this.state.contacts} deleteFromArray={this.deleteFromArray} /></div>
                 </div>
