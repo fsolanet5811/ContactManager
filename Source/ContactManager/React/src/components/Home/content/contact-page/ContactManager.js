@@ -2,7 +2,7 @@
 import SearchBar from "./SearchBar.js"
 import ContactList from "./ConatctList.js"
 import "./ContactManager.css"
-import { Route, useParams } from "react-router-dom"
+import { Redirect } from "react-router-dom"
 import searchContacts from "../../../api.js"
 
 class ContactManager extends React.Component {
@@ -14,7 +14,9 @@ class ContactManager extends React.Component {
             searchCriteria: {
                 searchType: 'Name',
                 searchText: ''
-            }
+            },
+            visability: true
+            
         }
     }
 
@@ -45,10 +47,29 @@ class ContactManager extends React.Component {
         this.setState(this.state)
     }
 
+    checkForEdit() {
+        if (this.props.context.editContactId != 0) {
+
+            i = 0
+            for (i; this.state.contacts[i].Id != this.props.context.editContactId; i++) {
+
+            }
+
+            let editContact = this.state.contacts[i];
+
+            <Redirect to={{
+                pathname: "/Home/edit/",
+                state: { id: editContact }
+            }}
+            />
+        }
+    }
+
     render() {
         return (
             <span>
                 <div className="Column Right">
+                    {this.checkForEdit}
                     <span><SearchBar userId={this.state.userId} getContacts={this.getContacts} /></span>
                     <div className="Table"><ContactList contacts={this.state.contacts} deleteFromArray={this.deleteFromArray} /></div>
                 </div>
