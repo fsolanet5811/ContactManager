@@ -26,6 +26,9 @@ class SearchBar extends React.Component {
                     this.state.searchCriteria.searchText = this.state.inputValue
                     let contacts = await searchContacts(this.props.userId, this.state.searchCriteria)
                     this.props.getContacts(contacts);
+
+                    this.state.inputValue = ''
+                    this.setState(this.state)
                 }
             }
     }
