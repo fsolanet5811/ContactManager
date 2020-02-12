@@ -42,17 +42,17 @@ namespace ContactManager.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("api/users/login/{username}/{password}")]
-        public IHttpActionResult LoginUser(string username, string password)
+        [HttpPost]
+        [Route("api/users/login")]
+        public IHttpActionResult LoginUser([FromBody] User user)
         {
-            if (Models.User.Login(username, password) == null)
+            if (user.Login() == null)
             {
                 return Content(HttpStatusCode.BadRequest, "Invalid Login");
             }
             try
             {
-                return Ok(Models.User.Login(username, password));
+                return Ok(user.Login());
             }
             catch (Exception ex)
             {

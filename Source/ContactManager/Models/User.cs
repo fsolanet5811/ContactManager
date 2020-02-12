@@ -101,14 +101,14 @@ namespace ContactManager.Models
             }
         }
 
-        public static User Login(string name, string pass)
+        public User Login()
         {
             DataTable dt;
             using (SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE Username = @Username " +
                 "and Password = @Password"))
             {
-                command.Parameters.Add(DataContext.CreateSqlParameter("@Username", name));
-                command.Parameters.Add(DataContext.CreateSqlParameter("@Password", pass));
+                command.Parameters.Add(DataContext.CreateSqlParameter("@Username", Username));
+                command.Parameters.Add(DataContext.CreateSqlParameter("@Password", Password));
                 dt = DataContext.ExecuteReader(command);
             }
             if (dt.Rows.Count == 0)
