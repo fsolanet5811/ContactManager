@@ -7,8 +7,6 @@
 }
 
 .Table {
-    margin-top: 50px;
-    width: 80%;
     background-color: none;
     overflow: hidden;
     overflow-y: scroll;
@@ -18,4 +16,8 @@
     margin-top: 25px;
     width: 70%;
     list-style-type: none;
+}
+
+.ContactCardHost {
+    margin: 10px;
 }

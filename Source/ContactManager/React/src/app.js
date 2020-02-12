@@ -9,7 +9,9 @@ class App extends Component {
         super(props);
         this.state = {
             context: {
-                loggedInUser: null,
+                loggedInUser: {
+                    Id: 1
+                },
                 editContactId: 0,
                 searchText: '',
                 searchPerformed: false

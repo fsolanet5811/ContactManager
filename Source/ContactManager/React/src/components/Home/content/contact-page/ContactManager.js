@@ -3,14 +3,15 @@ import SearchBar from "./SearchBar.js"
 import ContactList from "./ContactList.js"
 import "./ContactManager.css"
 import { Redirect } from "react-router-dom"
-import searchContacts from "../../../api.js"
+import { getContacts } from "../../../../api.js"
 
 class ContactManager extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            userId: props.context.loggedInUser.Id, contacts: [],
+            userId: props.context.loggedInUser.Id,
+            contacts: [],
             searchCriteria: {
                 searchType: 'Name',
                 searchText: ''
@@ -22,7 +23,8 @@ class ContactManager extends React.Component {
 
     async getContacts(inputValue) {
         this.state.searchCriteria.searchText = inputValue
-        this.state.contacts = await searchContacts(this.state.userId, this.state.searchCriteria)
+        this.state.contacts = await getContacts(this.state.userId, this.state.searchCriteria)
+        console.log(this.state.contacts)
         this.setState(this.state)
     }
 
@@ -33,7 +35,7 @@ class ContactManager extends React.Component {
 
         }
 
-        this.state.contacts.splice(i, 1)
+        //this.state.contacts.splice(i, 1)
         this.setState(this.state)
 
     }
@@ -57,23 +59,25 @@ class ContactManager extends React.Component {
 
             let editContact = this.state.contacts[i];
 
-            <Redirect to={{
-                pathname: "/Home/edit/",
-                state: { id: editContact }
-            }}
-            />
+            //<Redirect to={{
+            //    pathname: "/Home/edit/",
+            //    state: { id: editContact }
+            //}}
+            ///>
         }
     }
 
     render() {
+        console.log(this.state.contacts)
         return (
-            <span>
-                <div className="Column Right">
-                    {this.checkForEdit}
-                    <span><SearchBar userId={this.state.userId} getContacts={this.getContacts} /></span>
-                    <div className="Table"><ContactList contacts={this.state.contacts} deleteFromArray={this.deleteFromArray} /></div>
+                <div>
+                    <div>
+                        <SearchBar userId={this.state.userId} getContacts={this.getContacts.bind(this)} />
+                    </div>
+                    <div className="Table">
+                        <ContactList contacts={this.state.contacts}/>
+                    </div>
                 </div>
-            </span>
         )
     }
 

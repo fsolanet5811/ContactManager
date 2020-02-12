@@ -15,9 +15,9 @@ class SearchBar extends React.Component {
 
     }
 
-    ifEnter(e) {
+    async ifEnter(e) {
         if (e.key === 'Enter') {
-            this.props.getContacts(this.state.inputValue)
+            await this.props.getContacts(this.state.inputValue)
             this.setState(this.state = { inputValue: '' })
         }
     }
@@ -26,7 +26,7 @@ class SearchBar extends React.Component {
 
 
         return (
-            <input className="SearchBar" type="text" placeholder="Search" onChange={e => this.updateInputValue(e)} onKeyDown={e => this.ifEnter(e)} />
+            <input type="text" placeholder="Search" onChange={e => this.updateInputValue(e)} onKeyDown={e => this.ifEnter(e)} />
         )
     }
 }
