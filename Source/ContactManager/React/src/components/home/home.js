@@ -14,7 +14,7 @@ class Home extends Component {
     }
 
     render() {
-        return (
+        return  (
             <div>
                 <div className="SideBar">
                     <SideBar context={this.state.context}/>
