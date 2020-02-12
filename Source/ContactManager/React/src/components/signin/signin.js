@@ -37,10 +37,10 @@ class SignIn extends React.Component {
               <input type="text" placeholder="Password"/>
             </div>
             <Link to="/home/">To Home Page</Link>
-            <button class="button">Log In</button>
-            <button class = "button2" onClick={ () => this.changeView("signUp")}>Don't have an account? Sign Up</button>
+            <button className="button">Log In</button>
+            <button className = "button2" onClick={ () => this.changeView("signUp")}>Don't have an account? Sign Up</button>
           
-           <div class = "fixed">
+            <div className = "fixed">
            <img src="https://i.ibb.co/QJdHJ5N/citybottomimagewstars.png" alt="city"></img>
           </div>
           
@@ -74,10 +74,10 @@ class SignIn extends React.Component {
                 <input type="text" placeholder="Name" />
             </div>
 
-            <button class = "button">Submit</button>
-            <button class = "button2" onClick={ () => this.changeView("login")}>Have an Account? Log In</button>
+            <button className = "button">Submit</button>
+            <button className = "button2" onClick={ () => this.changeView("login")}>Have an Account? Log In</button>
             
-            <div class = "fixed">
+            <div className = "fixed">
              <img src="https://i.ibb.co/QJdHJ5N/citybottomimagewstars.png" alt="city"></img>
             </div>
             
