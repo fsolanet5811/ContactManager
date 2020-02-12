@@ -1,8 +1,8 @@
-import React from "react"
+﻿import React from "react"
 import Contact from "../contact/contact.js"
-import "./ContactPageApp.css"
+import "./ContactManager.css"
 
-class MyTable extends React.Component {
+class ContactList extends React.Component {
     constructor(props) {
         super(props)
         this.state = { visability: false }
@@ -12,20 +12,20 @@ class MyTable extends React.Component {
 
         const contacts = props.contacts
         const List = contacts.map((contact) =>
-            <li key={contact.Id} className = "ListItem"><Contact contact={contact} /></li>)
+            <li key={contact.Id} className="ListItem"><Contact contact={contact} /></li>)
 
         return (
             <ul>{List}</ul>
-            )
+        )
     }
 
     render() {
         return (
             <div>
-                <this.contactList contacts={this.props.contacts}/>
+                <this.contactList contacts={this.props.contacts} />
             </div>
         )
     }
 }
 
-export default MyTable
+export default ContactList

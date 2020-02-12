@@ -1,6 +1,6 @@
-import React from "react"
+﻿import React from "react"
 
-class MySearchBar extends React.Component {
+class SearchBar extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -18,7 +18,7 @@ class MySearchBar extends React.Component {
     ifEnter(e) {
         if (e.key === 'Enter') {
             this.props.getContacts(this.state.inputValue)
-            this.setState(this.state = { inputValue: ''})
+            this.setState(this.state = { inputValue: '' })
         }
     }
 
@@ -31,4 +31,4 @@ class MySearchBar extends React.Component {
     }
 }
 
-export default MySearchBar
+export default SearchBar
