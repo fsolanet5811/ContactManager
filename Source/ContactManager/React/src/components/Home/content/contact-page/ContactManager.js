@@ -1,6 +1,6 @@
 ﻿import React from "react"
 import SearchBar from "./SearchBar.js"
-import ContactList from "./ConatctList.js"
+import ContactList from "./ContactList.js"
 import "./ContactManager.css"
 import { Redirect } from "react-router-dom"
 import searchContacts from "../../../api.js"
@@ -10,7 +10,7 @@ class ContactManager extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            userId: props.context.Id, contacts: [],
+            userId: props.context.loggedInUser.Id, contacts: [],
             searchCriteria: {
                 searchType: 'Name',
                 searchText: ''

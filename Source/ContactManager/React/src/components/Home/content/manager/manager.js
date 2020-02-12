@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 import './manager.css'
-import { searchContacts } from '../../../api.js'
+import { searchContacts } from '../../../../api.js'
 import { Redirect } from 'react-router-dom';
 import Contact from '../contact/contact.js';
 

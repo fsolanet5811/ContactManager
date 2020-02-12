@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 import './contactInfo.css';
-import { deleteContact } from '../../../../api.js';
+import { deleteContact } from '../../../../../api.js';
 import { Redirect } from 'react-router-dom';
 
 class ContactInfo extends Component {

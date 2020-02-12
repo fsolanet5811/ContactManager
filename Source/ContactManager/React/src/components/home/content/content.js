@@ -6,30 +6,23 @@ import Manager from './manager/manager.js';
 import Contact from './contact/contact.js';
 import About from './about/about.js';
 import { Route, Link } from 'react-router-dom';
+import ContactManager from './contact-page/ContactManager.js';
 
 class Content extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            grabbedSearch: '',
-            searched: false
+            context: props.context
         }
     }
 
     render() {
         return (
             <div>
-                <Route path="/" exact render={(props) => <Manager search={this.state.grabbedSearch} searched={this.state.searched} grabSearch={this.grabSearch.bind(this)} />}/>
-                <Route path="/contact/" render={(props) => <div style={{padding: '50px'}}><Contact contact={this.state.grabbedEditContact} /></div>} />
-                <Route path="/about/" component={About} />
+                <Route to="/home" render={() => <ContactManager context={this.state.context}/>}/>
             </div>
         );
     }
-
-    grabSearch(search, searched) {
-        this.state.grabbedSearch = search;
-        this.state.searched = searched;
-    } 
 }
 
 export default hot(module)(Content);
