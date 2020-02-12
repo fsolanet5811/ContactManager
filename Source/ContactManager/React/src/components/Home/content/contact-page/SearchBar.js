@@ -17,8 +17,10 @@ class SearchBar extends React.Component {
 
     ifEnter(e) {
         if (e.key === 'Enter') {
-            this.props.getContacts(this.state.inputValue)
-            this.setState(this.state = { inputValue: '' })
+            if (this.state.inputValue != '') {
+                this.props.getContacts(this.state.inputValue)
+                this.setState(this.state = { inputValue: '' })
+            }
         }
     }
 
