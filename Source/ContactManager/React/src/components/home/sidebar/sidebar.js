@@ -7,7 +7,7 @@ class Sidebar extends React.Component {
   render() {
     return (
 
-      <div className = "Sidebar">
+      <div>
 
         <img src="https://i.ibb.co/8XMh3L0/sidebarlogo.png" alt="sidebarlogo" width="200" height="200"></img>
 
@@ -28,9 +28,7 @@ class Sidebar extends React.Component {
           <li>Settings</li>
         </ul>
 
-        <div className = "fixed">
-          <img src="https://i.ibb.co/Z2Lw1n5/citybottomimagesidebar.png" alt="city" width="250" height="auto"></img>
-        </div>
+        <img src="https://i.ibb.co/Z2Lw1n5/citybottomimagesidebar.png" alt="city" width="250" height="auto"></img>
         
       </div>
 
