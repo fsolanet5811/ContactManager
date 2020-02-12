@@ -1,24 +1,35 @@
 ﻿import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Edit from './edit/edit.js';
-import Manage from './manage/manage.js';
+import { hot } from 'react-hot-loader';
+
+import './content.css';
+import Manager from './manager/manager.js';
+import Contact from './contact/contact.js';
+import About from './about/about.js';
+import { Route, Link } from 'react-router-dom';
 
 class Content extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            context: props.context
+            grabbedSearch: '',
+            searched: false
         }
     }
 
     render() {
         return (
-            <div className="Content">
-                <Route path="/home/edit/" render={() => <Edit contactId={this.state.context.editContactId}/>}/>
-                <Route exact path="/home/" render={() => <Manage context={this.state.context}/>}/>
+            <div>
+                <Route path="/" exact render={(props) => <Manager search={this.state.grabbedSearch} searched={this.state.searched} grabSearch={this.grabSearch.bind(this)} />}/>
+                <Route path="/contact/" render={(props) => <div style={{padding: '50px'}}><Contact contact={this.state.grabbedEditContact} /></div>} />
+                <Route path="/about/" component={About} />
             </div>
         );
     }
+
+    grabSearch(search, searched) {
+        this.state.grabbedSearch = search;
+        this.state.searched = searched;
+    } 
 }
 
-export default Content;
+export default hot(module)(Content);
