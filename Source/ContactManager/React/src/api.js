@@ -29,7 +29,7 @@ export async function getContacts(userId, searchCriteria) {
 
 export function addContact(userId, contact) {
     return await fetch(baseAddress + 'api/contacts/add' + userId, {
-        body: JSON.stringify(searchCriteria),
+        body: JSON.stringify(contact),
         method: 'POST',
         header: {
             'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ export function addContact(userId, contact) {
 
 export function updateContact(contactId, newContact) {
     return await fetch(baseAddress + 'api/contacts/update' + contactId, {
-        body: JSON.stringify(searchCriteria),
+        body: JSON.stringify(newContact),
         method: 'POST',
         header: {
             'Content-Type': 'application/json'
@@ -63,7 +63,6 @@ export function updateContact(contactId, newContact) {
 
 export function deleteContact(contactId) {
     return await fetch(baseAddress + 'api/contacts/delete/' + contactId, {
-        body: JSON.stringify(searchCriteria),
         method: 'DELETE',
         header: {
             'Content-Type': 'application/json'
@@ -80,7 +79,7 @@ export function deleteContact(contactId) {
 
 export function addUser(user) {
     return await fetch(baseAddress + 'api/users/add', {
-        body: JSON.stringify(searchCriteria),
+        body: JSON.stringify(user),
         method: 'POST',
         header: {
             'Content-Type': 'application/json'
@@ -95,9 +94,9 @@ export function addUser(user) {
         });
 }
 
-export function login() {
+export function login(user) {
     return await fetch(baseAddress + 'api/users/login/', {
-        body: JSON.stringify(searchCriteria),
+        body: JSON.stringify(user),
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
