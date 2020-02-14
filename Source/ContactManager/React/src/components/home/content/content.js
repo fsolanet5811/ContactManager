@@ -2,7 +2,6 @@
 import { hot } from 'react-hot-loader';
 
 import './content.css';
-import Manager from './manager/manager.js';
 import Contact from './contact/contact.js';
 import About from './about/about.js';
 import { Route, Link } from 'react-router-dom';

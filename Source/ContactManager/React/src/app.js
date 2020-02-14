@@ -10,7 +10,8 @@ class App extends Component {
         this.state = {
             context: {
                 loggedInUser: {
-                    Id: 1
+                    Id: 1,
+                    Username: "Yeetus"
                 },
                 editContactId: 0,
                 searchText: '',

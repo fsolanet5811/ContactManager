@@ -21,27 +21,26 @@ class Login extends React.Component {
       case "login":
         return (
             <div className="App">
+              <img src="https://i.ibb.co/h1c6mv7/logofinal1.png" alt="logo" width="120" height="120"></img>
+
+              <h1>KEYSTONE CONTACT</h1>
+
+              <b>Log In</b>
+
+              <div className="input">
+                <input type="text" placeholder="Username"/>
+              </div>
+
+              <div className="input">
+                <input type="text" placeholder="Password"/>
+              </div>
+
+              <button class="button">Log In</button>
+              <button class = "button2" onClick={ () => this.changeView("signUp")}>Don't have an account? Sign Up</button>
             
-            <img src="https://i.ibb.co/h1c6mv7/logofinal1.png" alt="logo" width="120" height="120"></img>
-
-            <h1>KEYSTONE CONTACT</h1>
-
-            <b>Log In</b>
-
-            <div className="input">
-              <input type="text" placeholder="Username"/>
+            <div class = "fixed">
+            <img src="https://i.ibb.co/QJdHJ5N/citybottomimagewstars.png" alt="city"></img>
             </div>
-
-            <div className="input">
-              <input type="text" placeholder="Password"/>
-            </div>
-
-            <button class="button">Log In</button>
-            <button class = "button2" onClick={ () => this.changeView("signUp")}>Don't have an account? Sign Up</button>
-          
-           <div class = "fixed">
-           <img src="https://i.ibb.co/QJdHJ5N/citybottomimagewstars.png" alt="city"></img>
-          </div>
           
            </div>
          

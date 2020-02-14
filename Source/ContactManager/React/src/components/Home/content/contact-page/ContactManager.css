@@ -7,7 +7,7 @@
 }
 
 .Table {
-    background-color: none;
+    background-color: white;
     overflow: hidden;
     overflow-y: scroll;
 }
