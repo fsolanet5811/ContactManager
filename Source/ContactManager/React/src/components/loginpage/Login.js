@@ -7,6 +7,7 @@ import {
     Link
 } from "react-router-dom";
 import {login} from "../../api.js"
+import "password-hash"
 
 class Login extends React.Component {
     constructor(props) {
@@ -17,18 +18,24 @@ class Login extends React.Component {
             password: "",
             userLoggedIn = false
         }
-    }
+    } // end constructor
 
         async loginClick(){
             if (!this.state.username || !this.state.password) {
+                //invalid message
+            }
+
+            var hashedPassword = passwordHash.generate(this.state.password);
+
+            var loginResult = await login({ Username: this.state.username, Password: hashedPassword });
+
+            if (loginResult.id == NULL) {
                 //
             }
 
-            //encrypt password in new variable
-            //encryptedPassword
+            if () {
 
-            var loginResult = await login({ Username: this.state.username, Password: /* encryptedPassword*/});
-
+            }
             //if everything works, no error returned
 
             //if login success login result = user, set context.loggedInUser = loginResult
@@ -37,7 +44,8 @@ class Login extends React.Component {
 
             this.setState(this.state);
 
-        }
+        } // end loginCLick()
+
 
         usernameChange(e){
             this.state.username = e.target.value;
@@ -53,7 +61,6 @@ class Login extends React.Component {
             //if flag true userLoggedIn = false; and redirect
         return (
 
-            
             <div className="App">
             
             <img src="https://i.ibb.co/h1c6mv7/logofinal1.png" alt="logo" width="120" height="120"></img>
@@ -63,11 +70,11 @@ class Login extends React.Component {
             <b>Log In</b>
 
                 <div className="input">
-                    <input type="text" placeholder="Username" vaule={this.state.username} onChange={this.usernameChange.bind(this)} />
+                    <input type="text" placeholder="Username" value={this.state.username} onChange={this.usernameChange.bind(this)} />
             </div>
 
             <div className="input">
-                    <input type="password" placeholder="Password" vaule={this.state.pasword} onChange={this.passwordChange.bind(this)}/>
+                    <input type="password" placeholder="Password" value={this.state.pasword} onChange={this.passwordChange.bind(this)}/>
             </div>
 
             <button className="button" onClick= {}>Log In</button>
@@ -83,7 +90,7 @@ class Login extends React.Component {
 
 
     }
-  }
+} // end class Login
 
-    
+
 export default Login;
