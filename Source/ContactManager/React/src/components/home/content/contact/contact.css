@@ -2,6 +2,7 @@
     box-shadow: 3px 3px 3px black;
     background-color: mediumpurple;
     padding: 10px;
+    color: white;
 }
 
 .MainCard:hover {
