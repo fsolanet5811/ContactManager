@@ -3,8 +3,6 @@
     padding: 10px;
     border-radius: 0px 0px 10px 10px;
     box-shadow: 0px 0px 3px black;
-    animation-name: CardSlide;
-    animation-duration: 1s;
     overflow: hidden;
 }
 
@@ -53,6 +51,10 @@
 .Image {
     max-height: 20px;
     max-width: 20px;
+}
+
+.InformationCardAnimationHost {
+    overflow: hidden;
 }
 
 @keyframes CardSlide {

@@ -6,7 +6,9 @@ class Login extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      currentView: "login"
+      currentView: "login",
+      username: '',
+      password: ''
     }
   }
 
@@ -28,11 +30,11 @@ class Login extends React.Component {
               <b>Log In</b>
 
               <div className="input">
-                <input type="text" placeholder="Username"/>
+                <input type="text" placeholder="Username" value={this.state.username}/>
               </div>
 
               <div className="input">
-                <input type="text" placeholder="Password"/>
+                <input type="text" placeholder="Password" value={this.state.password}/>
               </div>
 
               <button class="button">Log In</button>
@@ -85,9 +87,18 @@ class Login extends React.Component {
 
       default:
         break
-    }
-  }
+		}
+	}
 
+	usernameChanged(e) {
+		this.state.username = e.target.value;
+		this.setState(this.state);
+	}
+
+	passwordChanged(e) {
+		this.state.password = e.target.value;
+		this.setState(this.state);
+	}
 
   render() {
     return (
@@ -97,6 +108,8 @@ class Login extends React.Component {
     )
   }
   
+
+
 }
 
 export default Login;

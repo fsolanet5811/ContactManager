@@ -16,29 +16,17 @@ class ContactManager extends React.Component {
                 searchType: 'Name',
                 searchText: ''
             },
-            visability: true
-            
+            visability: true,
+            isLoading: false
         }
     }
 
     async getContacts(inputValue) {
         this.state.searchCriteria.searchText = inputValue
-        this.state.contacts = await getContacts(this.state.userId, this.state.searchCriteria)
+        this.state.contacts = await getContacts(this.state.userId, this.state.searchCriteria);
         console.log(this.state.contacts)
         this.setState(this.state)
-    }
-
-    deleteFromArray(id) {
-
-        i = 0
-        for (i; i != this.state.contacts[i].Id; i++) {
-
-        }
-
-        //this.state.contacts.splice(i, 1)
-        this.setState(this.state)
-
-    }
+    }  
 
     editFromArray(contact) {
         i = 0
@@ -68,9 +56,8 @@ class ContactManager extends React.Component {
     }
 
     render() {
-        console.log(this.state.contacts)
         return (
-                <div>
+                <div className="ContactPageHost">
                     <div>
                         <SearchBar userId={this.state.userId} getContacts={this.getContacts.bind(this)} />
                     </div>

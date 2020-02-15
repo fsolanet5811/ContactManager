@@ -28,7 +28,7 @@ export async function getContacts(userId, searchCriteria) {
 }
 
 export async function addContact(userId, contact) {
-    return await fetch(baseAddress + 'api/contacts/add' + userId, {
+    return await fetch(baseAddress + '/api/contacts/add' + userId, {
         body: JSON.stringify(searchCriteria),
         method: 'POST',
         header: {
@@ -45,7 +45,7 @@ export async function addContact(userId, contact) {
 }
 
 export async function updateContact(contactId, newContact) {
-    return await fetch(baseAddress + 'api/contacts/update' + contactId, {
+    return await fetch(baseAddress + '/api/contacts/update' + contactId, {
         body: JSON.stringify(searchCriteria),
         method: 'POST',
         header: {
@@ -62,24 +62,16 @@ export async function updateContact(contactId, newContact) {
 }
 
 export async function deleteContact(contactId) {
-    return await fetch(baseAddress + 'api/contacts/delete/' + contactId, {
-        body: JSON.stringify(searchCriteria),
+    await fetch(baseAddress + '/api/contacts/delete/' + contactId, {
         method: 'DELETE',
         header: {
             'Content-Type': 'application/json'
         }
-    })
-        .then(response => {
-            return response.json()
-                .then(parsed => {
-                    console.log(parsed);
-                    return parsed;
-                });
-        });
+    });
 }
 
 export async function addUser(user) {
-    return await fetch(baseAddress + 'api/users/add', {
+    return await fetch(baseAddress + '/api/users/add', {
         body: JSON.stringify(searchCriteria),
         method: 'POST',
         header: {

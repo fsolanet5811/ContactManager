@@ -14,7 +14,7 @@ class ContactList extends React.Component {
         return (
             <div>
                 {
-                    this.props.contacts.map(contact => <div className="ContactCardHost"><Contact contact={contact}/></div>)
+                    this.props.contacts.map(contact => <div key={contact.Id} className="ContactCardHost"><Contact contact={contact}/></div>)
                 }
             </div>
         )

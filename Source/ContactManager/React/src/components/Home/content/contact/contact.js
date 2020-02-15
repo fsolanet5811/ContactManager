@@ -7,19 +7,23 @@ class Contact extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            contact: props.contact
+            contact: props.contact,
+            isOpen: false
         };
-        this.state.contact.visible = false;
     }
 
     render() {
+        if(this.state.contact.isDeleted) {
+            return null;
+        }
+
         return (
             <div>
                 <div className="MainCard" onClick={this.contactClicked.bind(this)}>
                     {this.state.contact.FullName}
                 </div>
                 <div className="InformationCardHost">
-                    {this.state.contact.visible && <ContactInfo contact={this.state.contact}/>}
+                    <ContactInfo isOpen={this.state.isOpen} contact={this.state.contact} contactDeleted={this.contactDeleted.bind(this)}/>
                 </div>
             </div>
             
@@ -27,7 +31,12 @@ class Contact extends Component {
     }
 
     contactClicked(e) {    
-        this.state.contact.visible = !this.state.contact.visible;
+        this.state.isOpen = !this.state.isOpen;
+        this.setState(this.state);
+    }
+
+    contactDeleted() {
+        // Just forcing a refresh here. The caller will set the deleted flag on the contact.
         this.setState(this.state);
     }
 }
