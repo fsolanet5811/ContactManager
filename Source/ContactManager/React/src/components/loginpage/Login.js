@@ -1,25 +1,59 @@
 import React from 'react';
-//import ReactDOM from 'react-dom';
 import './Login.css';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+import {login} from "../../api.js"
 
 class Login extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      currentView: "login"
+    constructor(props) {
+        super(props);
+        this.state = {
+            context: props.context,
+            username: "",
+            password: "",
+            userLoggedIn = false
+        }
     }
-  }
 
-  changeView (view) {
-    this.setState({
-      currentView: view
-    })
-  }
+        async loginClick(){
+            if (!this.state.username || !this.state.password) {
+                //
+            }
 
-  currentView () {
-    switch(this.state.currentView) {
-      case "login":
+            //encrypt password in new variable
+            //encryptedPassword
+
+            var loginResult = await login({ Username: this.state.username, Password: /* encryptedPassword*/});
+
+            //if everything works, no error returned
+
+            //if login success login result = user, set context.loggedInUser = loginResult
+
+            this.state.userLoggedIn = true;
+
+            this.setState(this.state);
+
+        }
+
+        usernameChange(e){
+            this.state.username = e.target.value;
+            this.setState(this.state);
+        }
+
+        passwordChange(e){
+            this.state.password = e.target.value;
+            this.setState(this.state);
+        }
+
+    render() {
+            //if flag true userLoggedIn = false; and redirect
         return (
+
+            
             <div className="App">
             
             <img src="https://i.ibb.co/h1c6mv7/logofinal1.png" alt="logo" width="120" height="120"></img>
@@ -28,16 +62,16 @@ class Login extends React.Component {
 
             <b>Log In</b>
 
-            <div className="input">
-              <input type="text" placeholder="Username"/>
+                <div className="input">
+                    <input type="text" placeholder="Username" vaule={this.state.username} onChange={this.usernameChange.bind(this)} />
             </div>
 
             <div className="input">
-              <input type="text" placeholder="Password"/>
+                    <input type="password" placeholder="Password" vaule={this.state.pasword} onChange={this.passwordChange.bind(this)}/>
             </div>
 
-            <button class="button">Log In</button>
-            <button class = "button2" onClick={ () => this.changeView("signUp")}>Don't have an account? Sign Up</button>
+            <button className="button" onClick= {}>Log In</button>
+            <Link to="/Signup/"><button className = "button2" >Don't have an account? Sign Up</button></Link>
           
            <div class = "fixed">
            <img src="https://i.ibb.co/QJdHJ5N/citybottomimagewstars.png" alt="city"></img>
@@ -45,61 +79,11 @@ class Login extends React.Component {
           
            </div>
          
-        )
-
-      case "signUp":
-        return (
-          
-            <div className="App2">
-            
-            <img src="https://i.ibb.co/h1c6mv7/logofinal1.png" alt="logo" width="120" height="120"></img>
+            )
 
 
-            <h1>KEYSTONE CONTACT</h1>
-            <b>Sign Up</b>
-            
-
-            
-
-            <div className="input">
-              <input type="text" placeholder="Username"/>
-            </div>
-
-            <div className="input">
-              <input type="text" placeholder="Password"/>
-            </div>
-
-            <div className="input">
-                <input type="text" placeholder="Name" />
-            </div>
-
-            <button class = "button">Submit</button>
-            <button class = "button2" onClick={ () => this.changeView("login")}>Have an Account? Log In</button>
-            
-            <div class = "fixed">
-             <img src="https://i.ibb.co/QJdHJ5N/citybottomimagewstars.png" alt="city"></img>
-            </div>
-            
-            </div>
-
-        )
-
-      default:
-        break
     }
   }
 
-
-  render() {
-    return (
-      <section id="login">{
-        this.currentView()
-      }</section>
-    )
-  }
-  
-}
-
+    
 export default Login;
-
-//ReactDOM.render(<Login/>, document.getElementById("root"))
