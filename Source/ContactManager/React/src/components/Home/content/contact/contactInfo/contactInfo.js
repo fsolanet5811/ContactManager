@@ -20,6 +20,7 @@ class ContactInfo extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            context: props.context,
             contact: props.contact,
             editClicked: false
         };
@@ -28,9 +29,9 @@ class ContactInfo extends Component {
     render() {
         if(this.state.editClicked) {
             this.state.editClicked = false;
-            return <Redirect to={"/contact/id:" + this.state.contact.Id}/>
+            this.state.context.editContactId = this.state.contact.Id;
+            return <Redirect push to="/home/contact"/>
         }
-        console.log(this.props.isOpen);
 
         return(
             <Transition in={this.props.isOpen} timeout={0}>

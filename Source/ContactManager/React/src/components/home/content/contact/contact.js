@@ -7,6 +7,7 @@ class Contact extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            context: props.context,
             contact: props.contact,
             isOpen: false
         };
@@ -23,7 +24,7 @@ class Contact extends Component {
                     {this.state.contact.FullName}
                 </div>
                 <div className="InformationCardHost">
-                    <ContactInfo isOpen={this.state.isOpen} contact={this.state.contact} contactDeleted={this.contactDeleted.bind(this)}/>
+                    <ContactInfo isOpen={this.state.isOpen} contact={this.state.contact} contactDeleted={this.contactDeleted.bind(this)} context={this.state.context}/>
                 </div>
             </div>
             

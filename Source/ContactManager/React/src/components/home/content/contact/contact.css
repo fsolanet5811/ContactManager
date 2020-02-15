@@ -3,10 +3,12 @@
     background-color: mediumpurple;
     padding: 10px;
     color: white;
+    font-size: 36px;
+    transition: background-color 0.7s ease;
 }
 
 .MainCard:hover {
-    background-color: lightgray;
+    background-color: mediumslateblue;
 }
 
 .InformationCardHost {
