@@ -9,7 +9,8 @@
     display: block;
     text-align: center;
     padding-bottom: 20px;
-    border-bottom: 3px groove red;
+    border-bottom: 3px groove crimson;
+    font-size: 24px;
 }
 
 .SideBarContentHost {
@@ -29,8 +30,14 @@
     color: white;
     display: block;
     text-align: center;
-    margin: 30px 0px 30px 0px;
+    padding: 30px 0px 30px 0px;
     text-decoration: none;
+    font-size: 24px;
+    transition: background-color 0.7s ease;
+}
+
+.Link:hover {
+    background-color: rgba(0,0,0,0.5);
 }
 
 .ImageHost {

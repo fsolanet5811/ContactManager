@@ -7,7 +7,7 @@
 }
 
 .Table {
-    width: 600px;
+    width: 900px;
 }
 
 .ListItem {
@@ -22,4 +22,8 @@
 
 .ContactCardHost {
     margin: 10px;
+}
+
+.SearchBar {
+    font-size: 24px;
 }

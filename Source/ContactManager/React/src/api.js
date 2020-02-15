@@ -1,4 +1,4 @@
-﻿var baseAddress = 'http://localhost:51055';
+﻿var baseAddress = 'http://poosdcontactmanager.azurewebsites.net';
 
 export async function getContact(contactId) {
     return await fetch(baseAddress + '/api/contacts/' + contactId)

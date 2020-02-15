@@ -118,8 +118,11 @@
     <Content Include="React\src\components\home\sidebar\sidebar.js" />
     <Content Include="React\src\components\home\sidebar\sidebarContent\sidebarContent.css" />
     <Content Include="React\src\components\home\sidebar\sidebarContent\sidebarContent.js" />
+    <Content Include="React\src\components\signin\login\login.css" />
+    <Content Include="React\src\components\signin\login\login.js" />
     <Content Include="React\src\components\signin\signin.css" />
     <Content Include="React\src\components\signin\signin.js" />
+    <Content Include="React\src\components\signin\signup\signup.js" />
     <Content Include="React\src\index.js" />
     <Content Include="webpack.config.js" />
     <Content Include="Web.config" />

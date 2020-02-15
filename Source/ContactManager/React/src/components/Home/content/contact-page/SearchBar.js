@@ -26,7 +26,7 @@ class SearchBar extends React.Component {
 
 
         return (
-            <input type="text" placeholder="Search" onChange={e => this.updateInputValue(e)} onKeyDown={e => this.ifEnter(e)} />
+            <input type="text" className="SearchBar" placeholder="Search" onChange={e => this.updateInputValue(e)} onKeyDown={e => this.ifEnter(e)} />
         )
     }
 }

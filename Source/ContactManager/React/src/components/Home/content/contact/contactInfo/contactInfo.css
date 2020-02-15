@@ -8,6 +8,7 @@
 
 .SectionTitle {
     font-weight: bold;
+    font-size: 18px;
 }
 
 .SectionInfo {
@@ -22,6 +23,7 @@
 .SectionContent {
     margin: 0px 0px 0px 10px;
     display: inline-block;
+    font-size: 18px;
 }
 
 .ContactInfoTable {
@@ -49,8 +51,8 @@
 }
 
 .Image {
-    max-height: 20px;
-    max-width: 20px;
+    max-height: 40px;
+    max-width: 40px;
 }
 
 .InformationCardAnimationHost {

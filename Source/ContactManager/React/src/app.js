@@ -23,7 +23,7 @@ class App extends Component {
     render() {
         return (
             <Router>
-                <Route exact path="/" render={() => <SignIn context={this.state.context}/>}/>
+                <SignIn context={this.state.context}/>
                 <Route path="/home" render={() => <Home context={this.state.context}/>}/>
             </Router>
         );

@@ -14,7 +14,7 @@ class Edit extends Component {
         return (
             <div className="Edit">
                 <h1>Edit Page!</h1>
-                <h1>{this.state.contactId}</h1>
+                <h1>Contact Id = {this.state.contactId}</h1>
                 <Link to="/home">To Home Page</Link>
             </div>
         )

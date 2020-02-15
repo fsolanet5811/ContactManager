@@ -6,6 +6,7 @@ class ContactList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            context: props.context,
             contacts: props.contacts
         }
     }
@@ -14,7 +15,7 @@ class ContactList extends React.Component {
         return (
             <div>
                 {
-                    this.props.contacts.map(contact => <div key={contact.Id} className="ContactCardHost"><Contact contact={contact}/></div>)
+                    this.props.contacts.map(contact => <div key={contact.Id} className="ContactCardHost"><Contact contact={contact} context={this.state.context}/></div>)
                 }
             </div>
         )

@@ -10,6 +10,7 @@ class ContactManager extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            context: props.context,
             userId: props.context.loggedInUser.Id,
             contacts: [],
             searchCriteria: {
@@ -62,7 +63,7 @@ class ContactManager extends React.Component {
                         <SearchBar userId={this.state.userId} getContacts={this.getContacts.bind(this)} />
                     </div>
                     <div className="Table">
-                        <ContactList contacts={this.state.contacts}/>
+                        <ContactList contacts={this.state.contacts} context={this.state.context}/>
                     </div>
                 </div>
         )
