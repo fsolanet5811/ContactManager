@@ -18,7 +18,8 @@ class ContactManager extends React.Component {
                 searchText: ''
             },
             visability: true,
-            isLoading: false
+            isLoading: false,
+            addingContact: false
         }
     }
 
@@ -57,10 +58,16 @@ class ContactManager extends React.Component {
     }
 
     render() {
+        if(this.state.addingContact) {
+            this.state.addingContact = false;
+            return <Redirect push to="/home/contact"/>
+        }
+
         return (
                 <div className="ContactPageHost">
-                    <div>
+                    <div className="SearchHost">
                         <SearchBar userId={this.state.userId} getContacts={this.getContacts.bind(this)} />
+                        <img className="Plus" src="/React/images/plus.png" onClick={this.addClick.bind(this)}/>
                     </div>
                     <div className="Table">
                         <ContactList contacts={this.state.contacts} context={this.state.context}/>
@@ -69,6 +76,11 @@ class ContactManager extends React.Component {
         )
     }
 
+    addClick() {
+        this.state.context.editContactId = 0;
+        this.state.addingContact = true;
+        this.setState(this.state);
+    }
 
 }
 

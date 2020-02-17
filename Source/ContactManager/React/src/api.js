@@ -28,7 +28,7 @@ export async function getContacts(userId, searchCriteria) {
 }
 
 export async function addContact(userId, contact) {
-    return await fetch(baseAddress + '/api/contacts/add' + userId, {
+    return await fetch(baseAddress + '/api/contacts/add/' + userId, {
         body: JSON.stringify(searchCriteria),
         method: 'POST',
         header: {

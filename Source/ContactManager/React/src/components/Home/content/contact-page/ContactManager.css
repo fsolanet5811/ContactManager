@@ -8,6 +8,7 @@
 
 .Table {
     width: 900px;
+    margin-right: 70px;
 }
 
 .ListItem {
@@ -26,4 +27,14 @@
 
 .SearchBar {
     font-size: 24px;
+}
+
+.Plus {
+    max-width: 60px;
+    max-height: 60px;
+}
+
+.SearchHost {
+    display: flex;
+    align-items: center;
 }
