@@ -7,6 +7,7 @@ import {
     Link
 } from "react-router-dom";
 import { login } from "../../../api.js"
+import bcrypt from "bcryptjs";
 
 class Login extends React.Component {
     constructor(props) {
@@ -15,25 +16,41 @@ class Login extends React.Component {
             context: props.context,
             username: "",
             password: "",
-            userLoggedIn: false
+            userLoggedIn: false,
+            usernameError: "",
+            passwordError: "",
+            loginError: ""
         }
     }
 
     async loginClick() {
-        if (!this.state.username || !this.state.password) {
-            //
+
+        //validate
+        if (this.validate()) {
+            console.log(this.state)
+            this.setState(this.state);
+        }
+        
+
+        //hash password
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(this.state.password, salt);
+
+        console.log(hash);
+
+        var loginResult = await login({ Username: this.state.username, Password: hash });
+
+   
+
+        if (loginResult.id == null) {
+            this.state.loginError = "not logged in";
+        }
+        else {
+            this.state.user.userLoggedIn = true;
         }
 
-        //encrypt password in new variable
-        //encryptedPassword
-
-        var loginResult = await login({ Username: this.state.username, Password: ''/* encryptedPassword*/});
-
-        //if everything works, no error returned
-
-        //if login success login result = user, set context.loggedInUser = loginResult
-
-        this.state.userLoggedIn = true;
+        
+        //this.state.userLoggedIn = true;
 
         this.setState(this.state);
 
@@ -49,11 +66,30 @@ class Login extends React.Component {
         this.setState(this.state);
     }
 
+    //validation
+    validate() {
+        let usernameError = "";
+        let passwordError = "";
+
+        if (!this.state.username) {
+            usernameError = "username required";
+        }
+        if (!this.state.password) {
+            passwordError = "password required";
+        }
+
+        if (usernameError || passwordError) {
+            this.setState({ usernameError, passwordError });
+            return false;
+        }
+
+        return true;
+    }
+    
+
     render() {
         //if flag true userLoggedIn = false; and redirect
         return (
-
-
             <div className="App">
 
                 <img src="https://i.ibb.co/h1c6mv7/logofinal1.png" alt="logo" width="120" height="120"></img>
@@ -62,17 +98,22 @@ class Login extends React.Component {
 
                 <b>Log In</b>
 
-                <div className="input">
-                    <input type="text" placeholder="Username" vaule={this.state.username} onChange={this.usernameChange.bind(this)} />
-                </div>
+                <div className="errMessage">{this.state.loginError}</div>
 
                 <div className="input">
-                    <input type="password" placeholder="Password" vaule={this.state.pasword} onChange={this.passwordChange.bind(this)} />
+                    <input type="text" placeholder="Username" value={this.state.username} onChange={this.usernameChange.bind(this)} />
                 </div>
+                <div className="errMessage">{this.state.usernameError}</div>
+
+                <div className="input">
+                    <input type="password" placeholder="Password" value={this.state.pasword} onChange={this.passwordChange.bind(this)} />
+                </div>
+                <div className="errMessage">{this.state.passwordError}</div>
+
 
                 <Link to="/home">To Home Page</Link>
 
-                <button className="button">Log In</button>
+                <button type="submit" className="button" onClick={this.loginClick.bind(this)}>Log In</button>
                 <Link to="/signup"><button className="button2" >Don't have an account? Sign Up</button></Link>
 
                 <div className="fixed">
