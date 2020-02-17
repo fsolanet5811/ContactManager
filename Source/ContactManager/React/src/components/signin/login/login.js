@@ -4,7 +4,8 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
+    Redirect
 } from "react-router-dom";
 import { login } from "../../../api.js"
 import bcrypt from "bcryptjs";
@@ -34,7 +35,7 @@ class Login extends React.Component {
 
         //hash password
         var salt = bcrypt.genSaltSync(10);
-        var hash = bcrypt.hashSync(this.state.password, salt);
+        var hash = bcrypt.hashSync(this.state.password, "$2a$10$qppakSpfoH/ojZL3btRRwe");
 
         console.log(hash);
 
@@ -42,11 +43,12 @@ class Login extends React.Component {
 
    
 
-        if (loginResult.id == null) {
+        if (loginResult.Id == null) {
             this.state.loginError = "not logged in";
         }
         else {
-            this.state.user.userLoggedIn = true;
+            this.state.userLoggedIn = true;
+            this.state.context.loggedInUser = loginResult;
         }
 
         
@@ -89,6 +91,11 @@ class Login extends React.Component {
 
     render() {
         //if flag true userLoggedIn = false; and redirect
+        if(this.state.userLoggedIn) {
+            this.state.userLoggedIn = false;
+            return <Redirect to="/home"/>
+        }
+
         return (
             <div className="App">
 
@@ -110,8 +117,6 @@ class Login extends React.Component {
                 </div>
                 <div className="errMessage">{this.state.passwordError}</div>
 
-
-                <Link to="/home">To Home Page</Link>
 
                 <button type="submit" className="button" onClick={this.loginClick.bind(this)}>Log In</button>
                 <Link to="/signup"><button className="button2" >Don't have an account? Sign Up</button></Link>

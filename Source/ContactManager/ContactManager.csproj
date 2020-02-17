@@ -91,6 +91,7 @@
     <Content Include="React\dist\bundle.js" />
     <Content Include="React\images\citybottomimagesidebar.png" />
     <Content Include="React\images\citybottomimagewstars.png" />
+    <Content Include="React\images\downArrow.png" />
     <Content Include="React\images\hamburger.png" />
     <Content Include="React\images\magnifying_glass.png" />
     <Content Include="React\images\pencil.png" />

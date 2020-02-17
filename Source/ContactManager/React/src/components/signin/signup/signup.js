@@ -32,19 +32,16 @@ class Signup extends React.Component {
         //validate
         const isValid = this.validate();
         if (isValid) {
-            console.log(this.state)
             this.setState(this.state);
         }
 
         //hash password
         var salt = bcrypt.genSaltSync(10);
-        var hash = bcrypt.hashSync(this.state.password, salt);
-
-        console.log(hash);
+        var hash = bcrypt.hashSync(this.state.password, "$2a$10$qppakSpfoH/ojZL3btRRwe");
 
         var signupResult = await addUser({ Username: this.state.username, Password: hash });
 
-        if (signupResult.id == null) {
+        if (signupResult.Id == null) {
             this.state.signupError = "not signed up";
         }
         else {
@@ -68,7 +65,7 @@ class Signup extends React.Component {
     }
 
     passwordConfirmChange(e) {
-        this.state.password = e.target.value;
+        this.state.passwordConfirm = e.target.value;
         this.setState(this.state);
     }
 
@@ -83,6 +80,7 @@ class Signup extends React.Component {
         }
         if (!this.state.password) {
             passwordError = "password required";
+            return;
         }
 
         const password = this.state.password
@@ -90,7 +88,7 @@ class Signup extends React.Component {
             passwordError = "password must be longer than 6 characters";
         }
 
-        if (this.state.password != this.state.passwordConfirm) {
+        if (!this.state.passwordConfirm || this.state.password.valueOf() != this.state.passwordConfirm.valueOf()) {
             passwordConfirmError = "passwords do not match";
         }
 
