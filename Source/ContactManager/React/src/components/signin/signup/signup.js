@@ -69,6 +69,12 @@ class Signup extends React.Component {
         this.setState(this.state);
     }
 
+    async onKeyDown(e) {
+        if(e.key == 'Enter') {
+            await this.signupClick();
+        }
+    }
+
     //validation
     validate() {
         let usernameError = "";
@@ -116,21 +122,21 @@ class Signup extends React.Component {
                     <div className="errMessage">{this.state.signupSuccess}</div>
 
                     <div className="input" >
-                        <input type="text" placeholder="Username" value={this.state.username} onChange={this.usernameChange.bind(this)}/>
+                        <input type="text" placeholder="Username" value={this.state.username} onChange={this.usernameChange.bind(this)} onKeyDown={this.onKeyDown.bind(this)}/>
                     </div>
                     <div className="errMessage">{this.state.usernameError}</div>
 
                     <div className="input">
-                        <input type="password" placeholder="Password" value={this.state.pasword} onChange={this.passwordChange.bind(this)} />
+                        <input type="password" placeholder="Password" value={this.state.pasword} onChange={this.passwordChange.bind(this)} onKeyDown={this.onKeyDown.bind(this)}/>
                     </div>
                     <div className="errMessage">{this.state.passwordError}</div>
 
                     <div className="input">
-                        <input type="password" placeholder="Confirm Password" value={this.state.paswordConfirm} onChange={this.passwordConfirmChange.bind(this)} />
+                        <input type="password" placeholder="Confirm Password" value={this.state.paswordConfirm} onChange={this.passwordConfirmChange.bind(this)} onKeyDown={this.onKeyDown.bind(this)}/>
                     </div>
                     <div className="errMessage">{this.state.passwordConfirmError}</div>
 
-                    <button type= "submit" className="button" onClick={this.signupClick.bind(this)}>Submit</button>
+                    <button type= "submit" className="button" onClick={this.signupClick.bind(this)}>Sign Up</button>
                     <Link to="/"><button className="button2">Have an Account? Log In </button></Link>
 
                     <div className="fixed">

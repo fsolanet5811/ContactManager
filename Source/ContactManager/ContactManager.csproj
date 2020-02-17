@@ -99,6 +99,7 @@
     <Content Include="React\images\redx.png" />
     <Content Include="React\images\sidebarcity.png" />
     <Content Include="React\images\sidebarlogo.png" />
+    <Content Include="React\images\upArrow.png" />
     <Content Include="React\public\index.html" />
     <Content Include="React\src\api.js" />
     <Content Include="React\src\app.css" />

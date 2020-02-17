@@ -17,11 +17,14 @@ class Contact extends Component {
         if(this.state.contact.isDeleted) {
             return null;
         }
+        
+        const arrowImageSource = this.state.isOpen ? "React/images/upArrow.png" : "React/images/downArrow.png";
 
         return (
             <div>
                 <div className="MainCard" onClick={this.contactClicked.bind(this)}>
                     {this.state.contact.FullName}
+                    <img className="DownArrow" src={arrowImageSource}/>
                 </div>
                 <div className="InformationCardHost">
                     <ContactInfo isOpen={this.state.isOpen} contact={this.state.contact} contactDeleted={this.contactDeleted.bind(this)} context={this.state.context}/>

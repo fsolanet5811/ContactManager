@@ -14,3 +14,10 @@
 .InformationCardHost {
     padding: 0px 10px 0px 10px;
 }
+
+.DownArrow {
+    max-height: 40px;
+    max-width: 40px;
+    float: right;
+    margin-right: 10px;
+}

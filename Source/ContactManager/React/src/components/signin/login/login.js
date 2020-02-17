@@ -88,6 +88,11 @@ class Login extends React.Component {
         return true;
     }
     
+    async onKeyDown(e) {
+        if(e.key == 'Enter') {
+            await this.loginClick();
+        }
+    }
 
     render() {
         //if flag true userLoggedIn = false; and redirect
@@ -108,12 +113,12 @@ class Login extends React.Component {
                 <div className="errMessage">{this.state.loginError}</div>
 
                 <div className="input">
-                    <input type="text" placeholder="Username" value={this.state.username} onChange={this.usernameChange.bind(this)} />
+                    <input type="text" placeholder="Username" value={this.state.username} onChange={this.usernameChange.bind(this)} onKeyDown={this.onKeyDown.bind(this)}/>
                 </div>
                 <div className="errMessage">{this.state.usernameError}</div>
 
                 <div className="input">
-                    <input type="password" placeholder="Password" value={this.state.pasword} onChange={this.passwordChange.bind(this)} />
+                    <input type="password" placeholder="Password" value={this.state.pasword} onChange={this.passwordChange.bind(this)} onKeyDown={this.onKeyDown.bind(this)}/>
                 </div>
                 <div className="errMessage">{this.state.passwordError}</div>
 
