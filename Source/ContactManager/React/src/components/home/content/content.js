@@ -21,7 +21,7 @@ class Content extends Component {
         return (
             <div>
                 <Route exact path="/home" render={() => <ContactManager context={this.state.context} />} />
-                <Route path="/home/contact" render={() => <Edit contactId={this.state.context.editContactId}/>}/>
+                <Route path="/home/contact" render={() => <Edit loggedInUserId={this.state.context.loggedInUser.Id} contactId={this.state.context.editContactId}/>}/>
             </div>
         );
     }
