@@ -117,6 +117,7 @@
     <Content Include="React\src\components\home\content\edit\edit.css" />
     <Content Include="React\src\components\home\content\edit\edit.js" />
     <Content Include="React\src\components\home\content\edit\emailAddress\emailaddress.js" />
+    <Content Include="React\src\components\home\content\edit\phoneNumber\phonenumberalt.js" />
     <Content Include="React\src\components\home\content\edit\phoneNumber\phonenumber.css" />
     <Content Include="React\src\components\home\content\edit\phoneNumber\phonenumber.js" />
     <Content Include="React\src\components\home\home.css" />
