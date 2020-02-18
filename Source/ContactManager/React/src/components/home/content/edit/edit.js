@@ -100,7 +100,13 @@ class Edit extends Component {
     }
 
     removePhoneNumberClicked(phoneNumber) {
-
+        for(var i = 0; i < this.state.contact.PhoneNumbers.length; i++) {
+            if(this.state.contact.PhoneNumbers[i] == phoneNumber) {
+                this.state.contact.PhoneNumbers.splice(i, 1);
+                this.setState(this.state);
+                break;
+            }
+        }
     }
 
     getPhoneNumberTypeString(phoneNumberTypeInt) {
@@ -203,13 +209,12 @@ class Edit extends Component {
 
                             <div key={pn.Id}>
                                 <PhoneNumber phoneNumber={pn} />
+                                <img src="/React/images/redx.png" className="RedX" onClick={this.removePhoneNumberClicked.bind(this, pn)}/>
                             </div>
 
                         )
 
                     }
-
-                <button onClick={this.buttonAddPN}>Add</button>
 
 
 
