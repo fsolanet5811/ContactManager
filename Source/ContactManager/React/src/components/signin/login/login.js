@@ -34,10 +34,7 @@ class Login extends React.Component {
         
 
         //hash password
-        var salt = bcrypt.genSaltSync(10);
         var hash = bcrypt.hashSync(this.state.password, "$2a$10$qppakSpfoH/ojZL3btRRwe");
-
-        console.log(hash);
 
         var loginResult = await login({ Username: this.state.username, Password: hash });
 

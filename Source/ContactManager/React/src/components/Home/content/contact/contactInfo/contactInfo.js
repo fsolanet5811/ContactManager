@@ -33,6 +33,14 @@ class ContactInfo extends Component {
             return <Redirect push to="/home/contact"/>
         }
 
+        // Dates are annoying, so we have to create a date object from our string and manually pull the day, month, and year to get the string we want.
+        var birthday = this.state.contact.Birthday ? new Date(this.state.contact.Birthday) : null;
+        var birthdayText = '';
+        if(birthday) {
+            birthdayText = (birthday.getMonth() + 1) + '/' + (birthday.getDay() + 1) + '/' + birthday.getFullYear();
+            // Javascript is literraly dumb and getDate/month return 1 less than the actual date in the object.
+        }
+
         return(
             <Transition in={this.props.isOpen} timeout={0}>
                 {(state) => (
@@ -68,7 +76,7 @@ class ContactInfo extends Component {
                                             <div className="SectionTitle">Address:</div>
                                             <div className="SectionInfo">{this.state.contact.Address}</div>
                                             <div className="SectionTitle">Birthday:</div>
-                                            <div className="SectionInfo">{this.state.contact.Birthday}</div>
+                                            <div className="SectionInfo">{birthdayText}</div>
                                         </td>
                                     </tr>
                                     <tr>

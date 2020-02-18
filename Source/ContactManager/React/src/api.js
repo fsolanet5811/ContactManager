@@ -1,5 +1,5 @@
-﻿var baseAddress = 'http://poosdcontactmanager.azurewebsites.net';
-//var baseAddress = 'http://localhost:51055' ;
+﻿//var baseAddress = 'http://poosdcontactmanager.azurewebsites.net';
+var baseAddress = 'http://localhost:51055' ;
 
 export async function getContact(contactId) {
     return await fetch(baseAddress + '/api/contacts/' + contactId)
@@ -30,9 +30,9 @@ export async function getContacts(userId, searchCriteria) {
 
 export async function addContact(userId, contact) {
     return await fetch(baseAddress + '/api/contacts/add/' + userId, {
-        body: JSON.stringify(searchCriteria),
+        body: JSON.stringify(contact),
         method: 'POST',
-        header: {
+        headers: {
             'Content-Type': 'application/json'
         }
     })
@@ -46,10 +46,10 @@ export async function addContact(userId, contact) {
 }
 
 export async function updateContact(contactId, newContact) {
-    return await fetch(baseAddress + '/api/contacts/update' + contactId, {
-        body: JSON.stringify(searchCriteria),
+    return await fetch(baseAddress + '/api/contacts/update/' + contactId, {
+        body: JSON.stringify(newContact),
         method: 'POST',
-        header: {
+        headers: {
             'Content-Type': 'application/json'
         }
     })
@@ -65,7 +65,7 @@ export async function updateContact(contactId, newContact) {
 export async function deleteContact(contactId) {
     await fetch(baseAddress + '/api/contacts/delete/' + contactId, {
         method: 'DELETE',
-        header: {
+        headers: {
             'Content-Type': 'application/json'
         }
     });
