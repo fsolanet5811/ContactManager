@@ -259,7 +259,7 @@ class Edit extends Component {
 
                         onChange={this.birthdayChanged.bind(this)}
 
-                        value={this.state.contact.Birthday != "" ? new Date(this.state.contact.Birthday.toString()) : null}
+                        value={this.state.contact.Birthday ? new Date(this.state.contact.Birthday.toString()) : null}
 
                     />
 
