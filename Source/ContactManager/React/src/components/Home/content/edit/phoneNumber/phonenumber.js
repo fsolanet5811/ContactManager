@@ -37,15 +37,15 @@ class phoneNumber extends React.Component {
         return (
             <div>
                 <div className="input">
-                    <input type="text" placeholder="Phone Number" value={this.props.PhoneNumber.Number} onChange={this.phoneNumChange.bind(this)} />
+                    <input type="text" placeholder="Phone Number" value={this.props.phoneNumber.Number} onChange={this.phoneNumChange.bind(this)} />
                 </div>
 
                 <div className="input">
-                    <input type="text" placeholder="ext." value={this.props.PhoneNumber.Extension} onChange={this.phoneExtChange.bind(this)} />
+                    <input type="text" placeholder="ext." value={this.props.phoneNumber.Extension} onChange={this.phoneExtChange.bind(this)} />
                 </div>
 
                 <div>
-                    <Dropdown options={options} onChange={this.selectNum.bind(this)} value={this.props.PhoneNumber.PhoneNumberType} placeholder="Phone Number" />
+                    <Dropdown options={options} onChange={this.selectNum.bind(this)} value={this.props.phoneNumber.PhoneNumberType} placeholder="Phone Number" />
                 </div>
             </div>
         );

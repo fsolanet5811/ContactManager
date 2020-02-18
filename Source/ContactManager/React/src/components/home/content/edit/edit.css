@@ -88,3 +88,10 @@ input[type=integer] {
     border: none;
     font-family: Courier New;
 }
+
+.RedX {
+    max-height: 60px;
+    max-width: 60px;
+    cursor: pointer;
+}
+
