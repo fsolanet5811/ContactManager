@@ -7,6 +7,7 @@ import { updateContact } from '../../../../api.js';
 import { Redirect } from 'react-router-dom';
 import PhoneNumber from './phoneNumber/phonenumber.js';
 import './edit.css';
+import Email from './email/email.js';
 
 class Edit extends Component {
     constructor(props) {
@@ -36,7 +37,6 @@ class Edit extends Component {
             this.state.contact = await getContact(this.props.contactId);
             this.setState(this.state);
         }
-        console.log("mount method ran");
     }
 
     buttonSave() {
@@ -109,6 +109,20 @@ class Edit extends Component {
         }
     }
 
+    addEmailClick() {
+        this.state.contact.Emails.push({ Id: 0, EmailType: 0, Address: '' });
+        this.setState(this.state);
+    }
+
+    removeEmailClicked(email) {
+        for(var i = 0; i < this.state.contact.Emails.length; i++) {
+            if(this.state.contact.Emails[i] == email) {
+                this.state.contact.Emails.splice(i, 1);
+                this.setState(this.state);
+            }
+        }
+    }
+    
     getPhoneNumberTypeString(phoneNumberTypeInt) {
         switch(phoneNumberTypeInt) {
             case 0:
@@ -145,14 +159,10 @@ class Edit extends Component {
 
         return (
             <div className="Edit">
-
                 <div className="flex-container">
                     <div className="item">
-
                         <form>
-
                             <label>
-
                                 <input type="text"
 
                                     size="35"
@@ -162,16 +172,11 @@ class Edit extends Component {
                                     value={this.state.contact.FirstName} 
                                     
                                     onChange={this.firstNameChanged.bind(this)}/>
-
-                                    
+                            
                             </label>
-
                         </form>
-
                     </div>
-
                 </div>
-
                 <div className="flex-container">
                     <div className="item">
 
@@ -188,26 +193,21 @@ class Edit extends Component {
                                     value={this.state.contact.LastName} 
                                     
                                     onChange={this.lastNameChanged.bind(this)}/>
-
                             </label>
-
                         </form>
-
                     </div>
-
                 </div>
 
-
-
-                <p>Phone Number</p>
-
-                <div className="flex-container"></div>
-                <img src="/React/images/plus.png" className="Plus" onClick={this.addPhoneNumberClicked.bind(this)}/>
+                <div className="PhoneNumbersTitleHost">
+                    <p className="SectionTitle">Phone Number</p>
+                    <img src="/React/images/plus.png" className="Plus" onClick={this.addPhoneNumberClicked.bind(this)}/>
+                </div>
+                
                     {
 
                         this.state.contact.PhoneNumbers.map((pn) =>
 
-                            <div key={pn.Id}>
+                            <div className="PhoneNumberHost" key={pn.Id}>
                                 <PhoneNumber phoneNumber={pn} />
                                 <img src="/React/images/redx.png" className="RedX" onClick={this.removePhoneNumberClicked.bind(this, pn)}/>
                             </div>
@@ -219,64 +219,35 @@ class Edit extends Component {
 
 
 
-            <div>Email:</div>
+            <div className="EmailsTitleHost">
+                <div className="SectionTitle">Email:</div>
+                <img src="/React/images/plus.png" className="Plus" onClick={this.addEmailClick.bind(this)}/>
+            </div>
+            
 
               {
 
             this.state.contact.Emails.map((email) =>
 
                 <div key={email.Id} className="SectionInfo">
-
-                    <div>
-
-                        {this.getEmailTypeString(email.EmailType)}
-
-                    </div>
-
-                    <div className="SectionContent">
-
-                        {email.Address}
-
-                    </div>
-
+                    <Email email={email}/>
+                    <img src="/React/images/redx.png" className="RedX" onClick={this.removeEmailClicked.bind(this, email)}/>
                 </div>
-
             )
-
         }
-
-
-
-        <p></p>
-
             <div className="flex-container">
-
                 <div className="item">Birthday</div>
-
                 <div className="item">
-
-                    <DatePicker
-
-                        onChange={this.birthdayChanged.bind(this)}
-
-                        value={this.state.contact.Birthday ? new Date(this.state.contact.Birthday.toString()) : null}
-
-                    />
-
+                    <DatePicker onChange={this.birthdayChanged.bind(this)} value={this.state.contact.Birthday ? new Date(this.state.contact.Birthday.toString()) : null} />
                 </div>
-
             </div>
 
 
 
             <div className="flex-container">
-
                 <div className="item">
-
                     <form>
-
                         <label>
-
                             <input type="text"
 
                                 size="35"
@@ -288,20 +259,13 @@ class Edit extends Component {
                                 onChange={this.addressChanged.bind(this)}/>
 
                         </label>
-
                     </form>
-
                 </div>
-
             </div>
             <div className="flex-container">
-
                 <div className="item">
-
                     <form>
-
                         <label>
-
                         <input type="text"
 
                             size="35"
@@ -315,25 +279,16 @@ class Edit extends Component {
                             onChange={this.companyChanged.bind(this)}/>
 
                         </label>
-
                     </form>
-
                 </div>
-
             </div>
 
 
 
             <div className="flex-container">
-
-                <div className="item">Notes</div>
-
                 <div className="item">
-
                     <form>
-
                         <label>
-
                         <input type="text"
 
                             size="35"
@@ -345,17 +300,13 @@ class Edit extends Component {
                             onChange={this.notesChanged.bind(this)}/>
 
                         </label>
-
                     </form>
-
                 </div>
-
             </div>
 
 
 
             <button onClick={this.saveClicked.bind(this)} className="savebutton">Save</button>
-
             <button onClick={this.cancelClicked.bind(this)} className="cancelbutton">Cancel</button>
 
             </div >

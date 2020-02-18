@@ -28,7 +28,7 @@
     text-align: center;
     color: white;
     background: #8891A8;
-    height: 500px;
+    height: 570px;
     width: 500px;
     margin: 50px auto;
     border-radius: 20px;
@@ -102,6 +102,7 @@ input[type=password] {
     box-sizing: border-box;
     border: none;
     font-family: Courier New;
+    font-size: 24px;
 }
 
 .fixed {

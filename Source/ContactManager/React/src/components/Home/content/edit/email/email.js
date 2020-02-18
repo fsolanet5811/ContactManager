@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
-import './phonenumber.css'
+import '../phoneNumber/phonenumber.css';
 
-class email extends React.Component {
+class Email extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -46,4 +46,4 @@ class email extends React.Component {
     }
 }
 
-export default email;
+export default Email;
