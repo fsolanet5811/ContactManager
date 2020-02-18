@@ -6,7 +6,7 @@ const options = [
     'home', 'mobile', 'work', 'fax'
 ]
 
-class phoneNumber extends React.Component {
+class PhoneNumber extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,16 +27,16 @@ class phoneNumber extends React.Component {
 
 
         return (
-
+            <div>
                 <Dropdown options={options} onChange={this.selectNum.bind(this)} value={defaultOption} placeholder="Phone Number" />
 
                 //testing, delete later
                 <div>
                     Selection: {yourSelection}
                 </div>
-
+            </div>              
         );
     }
 }
 
-export default phoneNumber;
+export default PhoneNumber;

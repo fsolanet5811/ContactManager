@@ -5,6 +5,7 @@ import DatePicker from 'react-date-picker';
 import { addContact, getContact } from '../../../../api.js';
 import { updateContact } from '../../../../api.js';
 import { Redirect } from 'react-router-dom';
+import PhoneNumber from './phoneNumber/phonenumber.js';
 import './edit.css';
 
 class Edit extends Component {
@@ -43,27 +44,6 @@ class Edit extends Component {
             AddContact()
         else
             UpdateContact(this.state.contactId)
-    }
-
-    buttonCancel() {
-    }
-
-    buttonAddPN(pn, Id) {
-    }
-
-    buttonAddPN() {
- 
-
-    }
-
-
-    buttonAddEmail(email) {
- 
-    }
-
-
-    buttonAddEmail() {
-
     }
 
     firstNameChanged(e) {
@@ -111,6 +91,16 @@ class Edit extends Component {
 
         this.state.returnToManagePage = true;
         this.setState(this.state);
+    }
+
+    addPhoneNumberClicked() {
+        // Add a blank phone number to the list.
+        this.state.contact.PhoneNumbers.push({ Id: 0, PhoneNumberType: 0, Number: '', Extension: ''});
+        this.setState(this.state);
+    }
+
+    removePhoneNumberClicked(phoneNumber) {
+
     }
 
     getPhoneNumberTypeString(phoneNumberTypeInt) {
@@ -206,36 +196,18 @@ class Edit extends Component {
                 <p>Phone Number</p>
 
                 <div className="flex-container"></div>
+                <img src="/React/images/plus.png" className="Plus" onClick={this.addPhoneNumberClicked.bind(this)}/>
+                    {
 
-                {
+                        this.state.contact.PhoneNumbers.map((pn) =>
 
-                    this.state.contact.PhoneNumbers.map((pn) =>
-
-                        <div key={pn.Id}>
-
-                            <div>
-
-                                {this.getPhoneNumberTypeString(pn.PhoneNumberType)}
-
+                            <div key={pn.Id}>
+                                <PhoneNumber phoneNumber={pn} />
                             </div>
 
-                            <div>
+                        )
 
-                                {pn.Number}
-
-                            </div>
-
-                            {
-
-                                pn.Extension && <div>{'(' + pn.Extension + ')'}</div>
-
-                            }
-
-                        </div>
-
-                    )
-
-                }
+                    }
 
                 <button onClick={this.buttonAddPN}>Add</button>
 
