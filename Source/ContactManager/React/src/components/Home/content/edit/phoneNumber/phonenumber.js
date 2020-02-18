@@ -3,14 +3,16 @@ import './phonenumber.css'
 import Dropdown from 'react-dropdown'
 
 const options = [
-    'home', 'mobile', 'work', 'fax'
+    'Home', 'Mobile', 'Work', 'Fax'
 ]
 
-class PhoneNumber extends React.Component {
+class phoneNumber extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected:''
+            selected: '',
+            phoneNum: "",
+            ext:""
         }
         
     }
@@ -19,24 +21,35 @@ class PhoneNumber extends React.Component {
         this.setState({selected:option})
     }
 
+    phoneNumChange(e) {
+        this.state.phoneNum = e.target.value;
+        this.setState(this.state);
+    }
+
+    phoneExtChange(e) {
+        this.state.ext = e.target.value;
+        this.setState(this.state);
+    }
+
     render() {
         const defaultOption = this.state.selected
 
-        //testing, delete later
-        const yourSelection = typeof this.state.selected === 'string' ? this.state.selected : this.state.selected.label
-
-
         return (
             <div>
-                <Dropdown options={options} onChange={this.selectNum.bind(this)} value={defaultOption} placeholder="Phone Number" />
-
-                //testing, delete later
-                <div>
-                    Selection: {yourSelection}
+                <div className="input">
+                    <input type="text" placeholder="Phone Number" value={this.props.PhoneNumber.Number} onChange={this.phoneNumChange.bind(this)} />
                 </div>
-            </div>              
+
+                <div className="input">
+                    <input type="text" placeholder="ext." value={this.props.PhoneNumber.Extension} onChange={this.phoneExtChange.bind(this)} />
+                </div>
+
+                <div>
+                    <Dropdown options={options} onChange={this.selectNum.bind(this)} value={this.props.PhoneNumber.PhoneNumberType} placeholder="Phone Number" />
+                </div>
+            </div>
         );
     }
 }
 
-export default PhoneNumber;
+export default phoneNumber;
