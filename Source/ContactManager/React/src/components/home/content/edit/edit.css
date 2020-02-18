@@ -112,3 +112,7 @@ input[type=integer] {
 .SectionTitle {
     font-size: 24px;
 }
+
+.EmailsTitleHost {
+    display: flex;
+}

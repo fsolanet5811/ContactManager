@@ -219,7 +219,11 @@ class Edit extends Component {
 
 
 
-            <div className="SectionTitle">Email:</div>
+            <div className="EmailsTitleHost">
+                <div className="SectionTitle">Email:</div>
+                <img src="/React/images/plus.png" className="Plus" onClick={this.addEmailClick.bind(this)}/>
+            </div>
+            
 
               {
 
@@ -234,7 +238,7 @@ class Edit extends Component {
             <div className="flex-container">
                 <div className="item">Birthday</div>
                 <div className="item">
-                    <DatePicker onChange={this.birthdayChanged.bind(this)} value={this.state.contact.Birthday != "" ? new Date(this.state.contact.Birthday.toString()) : null} />
+                    <DatePicker onChange={this.birthdayChanged.bind(this)} value={this.state.contact.Birthday ? new Date(this.state.contact.Birthday.toString()) : null} />
                 </div>
             </div>
 
