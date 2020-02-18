@@ -71,22 +71,24 @@
 
 input[type=text] {
     border-radius: 5px;
-    width: 50%;
+    width: 70%;
     padding: 2px 2px;
     margin: 4px 10px;
     box-sizing: border-box;
     border: none;
     font-family: Courier New;
+    font-size: 24px;
 }
 
 input[type=integer] {
     border-radius: 5px;
-    width: 50%;
+    width: 70%;
     padding: 2px 2px;
     margin: 4px 10px;
     box-sizing: border-box;
     border: none;
     font-family: Courier New;
+    font-size: 24px;
 }
 
 .RedX {
@@ -95,3 +97,18 @@ input[type=integer] {
     cursor: pointer;
 }
 
+.PhoneNumberHost {
+    display: flex;
+}
+
+.PhoneNumbersTitleHost {
+    display: flex;
+}
+
+.Edit {
+    margin-top: 50px;
+}
+
+.SectionTitle {
+    font-size: 24px;
+}
