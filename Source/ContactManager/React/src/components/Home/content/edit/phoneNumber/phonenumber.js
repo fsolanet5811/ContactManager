@@ -1,41 +1,46 @@
 ﻿import React, { Component } from 'react';
 import './phonenumber.css'
-import Dropdown from 'react-dropdown'
-
-const options = [
-    'Home', 'Mobile', 'Work', 'Fax'
-]
 
 class phoneNumber extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected: '',
+            value: '',
             phoneNum: "",
             ext:""
         }
         
     }
 
-    selectNum(option) {
-        this.setState({selected:option})
+    handleChange(e) {
+        this.props.phoneNumber.PhoneNumberType = e.target.value;
+        this.setState(this.state);
     }
 
     phoneNumChange(e) {
-        this.state.phoneNum = e.target.value;
+        this.props.phoneNumber.Number = e.target.value;
         this.setState(this.state);
     }
 
     phoneExtChange(e) {
-        this.state.ext = e.target.value;
+        this.props.phoneNumber.Extension = e.target.value;
         this.setState(this.state);
     }
 
     render() {
-        const defaultOption = this.state.selected
-
+ 
         return (
             <div>
+
+                <div>
+                    <select value={this.props.phoneNumber.PhoneNumberType} onChange={this.handleChange.bind(this)}>
+                        <option value={0}>Home</option>
+                        <option value={1}>Mobile</option>
+                        <option value={2}>Work</option>
+                        <option value={3}>Fax</option>
+                    </select>
+                </div>
+
                 <div className="input">
                     <input type="text" placeholder="Phone Number" value={this.props.phoneNumber.Number} onChange={this.phoneNumChange.bind(this)} />
                 </div>
@@ -44,9 +49,7 @@ class phoneNumber extends React.Component {
                     <input type="text" placeholder="ext." value={this.props.phoneNumber.Extension} onChange={this.phoneExtChange.bind(this)} />
                 </div>
 
-                <div>
-                    <Dropdown options={options} onChange={this.selectNum.bind(this)} value={this.props.phoneNumber.PhoneNumberType} placeholder="Phone Number" />
-                </div>
+               
             </div>
         );
     }
