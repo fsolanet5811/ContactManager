@@ -45,10 +45,9 @@ class PhoneNumber extends React.Component {
                     <input type="text" placeholder="Phone Number" value={this.props.phoneNumber.Number} onChange={this.phoneNumChange.bind(this)} />
                 </div>
 
-                <div className="input">
-                    <input type="text" placeholder="ext." value={this.props.phoneNumber.Extension} onChange={this.phoneExtChange.bind(this)} />
+                <div className="input2">
+                <input type="text" placeholder="ext." value={this.props.phoneNumber.Extension} onChange={this.phoneExtChange.bind(this)} />
                 </div>
-
                
             </div>
         );

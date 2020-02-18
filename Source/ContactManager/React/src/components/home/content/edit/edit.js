@@ -158,7 +158,8 @@ class Edit extends Component {
         }
 
         return (
-            <div className="Edit">
+            <div className = "EditPage">
+            <div className="EditBox">
                 <div className="flex-container">
                     <div className="item">
                         <form>
@@ -198,7 +199,7 @@ class Edit extends Component {
                     </div>
                 </div>
 
-                <div className="PhoneNumbersTitleHost">
+                <div className="PhoneNumbersTitleHost" >
                     <p className="SectionTitle">Phone Number</p>
                     <img src="/React/images/plus.png" className="Plus" onClick={this.addPhoneNumberClicked.bind(this)}/>
                 </div>
@@ -229,14 +230,14 @@ class Edit extends Component {
 
             this.state.contact.Emails.map((email) =>
 
-                <div key={email.Id} className="SectionInfo">
+                <div key={email.Id} className="EmailHost">
                     <Email email={email}/>
                     <img src="/React/images/redx.png" className="RedX" onClick={this.removeEmailClicked.bind(this, email)}/>
                 </div>
             )
         }
             <div className="flex-container">
-                <div className="item">Birthday</div>
+                <div className="Birth">Birthday</div>
                 <div className="item">
                     <DatePicker onChange={this.birthdayChanged.bind(this)} value={this.state.contact.Birthday ? new Date(this.state.contact.Birthday.toString()) : null} />
                 </div>
@@ -310,6 +311,7 @@ class Edit extends Component {
             <button onClick={this.cancelClicked.bind(this)} className="cancelbutton">Cancel</button>
 
             </div >
+            </div>
         )
     }
 }

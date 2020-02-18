@@ -110,7 +110,7 @@ class Signup extends React.Component {
         render() {
             return (
 
-                <div className="App">
+                <div className="App2">
 
                     <img src="https://i.ibb.co/h1c6mv7/logofinal1.png" alt="logo" width="120" height="120"></img>
 
