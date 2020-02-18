@@ -113,6 +113,10 @@ input[type=integer] {
     font-size: 24px;
 }
 
+.SectionInfo {
+    display: flex;
+}
+
 .EmailsTitleHost {
     display: flex;
 }
