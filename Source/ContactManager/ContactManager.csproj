@@ -155,10 +155,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Properties\PublishProfiles\poosdcontactmanager - Web Deploy.pubxml" />
     <Content Include=".babelrc" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
+    <None Include="Properties\PublishProfiles\poosdcontactmanager - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\poosdcontactmanager - ReadOnly - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\poosdcontactmanager - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
